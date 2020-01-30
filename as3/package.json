@@ -1,0 +1,16 @@
+{
+  "name": "typescript-compiler-as3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "tsc && node ./lib/index.js"
+  },
+  "author": "masautt",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.5.2",
+    "typescript": "^3.7.5"
+  }
+}

@@ -2,11 +2,6 @@
   "name": "typescript-compiler",
   "version": "1.0.0",
   "description": "My first compiler, written in TypeScript",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./lib/index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/masautt/typescript-compiler.git"
@@ -16,9 +11,5 @@
   "bugs": {
     "url": "https://github.com/masautt/typescript-compiler/issues"
   },
-  "homepage": "https://github.com/masautt/typescript-compiler#readme",
-  "devDependencies": {
-    "@types/node": "^13.5.2",
-    "typescript": "^3.7.5"
-  }
+  "homepage": "https://github.com/masautt/typescript-compiler#readme"
 }
