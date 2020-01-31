@@ -16,7 +16,7 @@ const keywords : string[] = [
     "do",
     "doend",
     "for",
-    "foreend",
+    "forend",
     "input",
     "output",
     "and",
