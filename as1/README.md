@@ -15,13 +15,13 @@ npm start
 2. `npm install` will add the following packages to your `/node_modules/` folder.
 
 ```json
-"devDependencies": {
+  "devDependencies": {
     "@types/jest": "^25.1.1",
-    "@types/node": "^13.5.2",
+    "@types/node": "^13.7.0",
     "jest": "^25.1.0",
     "ts-jest": "^25.1.0",
     "typescript": "^3.7.5"
-}
+  }
 ```
 
 3. `npm start` will run the TypeScript compiler which will transpile all the TypeScript files in `/src/` to `/lib/` and then start the node application by running node on `./lib/index.js`

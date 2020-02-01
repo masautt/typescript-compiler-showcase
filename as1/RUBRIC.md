@@ -42,33 +42,27 @@ documentation template.
 
 #### (Partial) Source code:
 
-Input:
+```
+Input : input.txt
 
-    *while (fahr < upper) a = 23.00 whileend*
+while (fahr < upper) a = 23.00 whileend
 
 Output:
 
-    token lexeme
+| Token      | Lexeme   |
+| ---------- | -------- |
+| keyword    | while    |
+| separator  | (        |
+| identifier | fahr     |
+| operator   | <        |
+| identifier | upper    |
+| separator  | )        |
+| identifier | a        |
+| operator   | =        |
+| real       | 23.00    |
+| keyword    | whileend |
 
-    keyword while
-
-    separator (
-
-    identifier fahr
-
-    operator <
-
-    identifier upper
-
-    separator )
-
-    identifier a
-
-    operator =
-
-    real 23.00
-
-    keyword whileend
+```
 
 #### Sample Token Assignment
 

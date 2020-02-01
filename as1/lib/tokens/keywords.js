@@ -18,7 +18,7 @@ var keywords = [
     "do",
     "doend",
     "for",
-    "foreend",
+    "forend",
     "input",
     "output",
     "and",
