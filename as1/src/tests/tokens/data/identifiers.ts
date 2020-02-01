@@ -1,4 +1,4 @@
-import { isValidIdentifier } from '../../../tokens/identifiers';
+import { isValidIdentifier } from '../../../tokens/main';
 import { TestCase, TestSuite } from '../../../@types/tests';
 
 const identifiers: TestCase[] = [

@@ -1,4 +1,4 @@
-import { isKeyword } from '../../../tokens/keywords';
+import { isKeyword } from '../../../tokens/main';
 import { TestCase, TestSuite } from '../../../@types/tests';
 
 const keywords: TestCase[] = [

@@ -1,4 +1,4 @@
-import { isOperator } from '../../../tokens/operators';
+import { isOperator } from '../../../tokens/main';
 import { TestCase, TestSuite } from '../../../@types/tests';
 
 const operators: TestCase[] = [

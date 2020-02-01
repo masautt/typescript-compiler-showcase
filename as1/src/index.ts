@@ -1,5 +1,3 @@
-import fs from 'fs';
+import { readFile } from 'fs';
 
-fs.readFile('input.txt', (err, data) => {
-    console.log(data);
-});
+readFile('./input.txt', 'utf8', (err, data) => {});

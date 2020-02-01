@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = __importDefault(require("fs"));
-fs_1.default.readFile('input.txt', function (err, data) {
-    console.log(data);
+var fs_1 = require("fs");
+fs_1.readFile('./input.txt', 'utf8', function (err, data) {
+    console.log(data.split(' '));
 });
