@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var operators_1 = require("../../../tokens/operators");
+var main_1 = require("../../../tokens/main");
 var operators = [
     {
         value: '*',
@@ -46,5 +46,5 @@ var operators = [
 exports.operatorSuite = {
     name: 'operator',
     cases: operators,
-    func: operators_1.isOperator
+    func: main_1.isOperator
 };

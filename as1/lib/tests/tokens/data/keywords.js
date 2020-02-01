@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var keywords_1 = require("../../../tokens/keywords");
+var main_1 = require("../../../tokens/main");
 var keywords = [
     {
         value: 'int',
@@ -98,5 +98,5 @@ var keywords = [
 exports.keywordSuite = {
     name: 'keyword',
     cases: keywords,
-    func: keywords_1.isKeyword
+    func: main_1.isKeyword
 };

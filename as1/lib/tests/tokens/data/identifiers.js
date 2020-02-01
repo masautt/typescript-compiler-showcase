@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var identifiers_1 = require("../../../tokens/identifiers");
+var main_1 = require("../../../tokens/main");
 var identifiers = [
     {
         value: 'num',
@@ -58,5 +58,5 @@ var identifiers = [
 exports.identifierSuite = {
     name: 'identifier',
     cases: identifiers,
-    func: identifiers_1.isValidIdentifier
+    func: main_1.isValidIdentifier
 };
