@@ -1,4 +1,5 @@
 export { isKeyword } from './keywords';
+export { hasKeyword } from "./keywords";
 export { isOperator } from './operators';
 export { isSeparator } from './separators';
 export { isValidIdentifier } from './identifiers';

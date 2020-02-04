@@ -41,6 +41,14 @@ const reals: TestCase[] = [
     {
         value: '!',
         expected: false
+    },
+    {
+        value : "{",
+        expected : false
+    },
+    {
+        value : "-",
+        expected : false
     }
 ];
 

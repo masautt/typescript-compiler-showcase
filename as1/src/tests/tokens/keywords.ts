@@ -1,7 +1,7 @@
-import { isKeyword } from '../../tokens/_exports';
+import { isKeyword, hasKeyword } from '../../tokens/_exports';
 import { TestCase, TestSuite } from '../../@types/tests';
 
-const keywords: TestCase[] = [
+const isKeywordCase: TestCase[] = [
     {
         value: 'int',
         expected: true
@@ -96,8 +96,53 @@ const keywords: TestCase[] = [
     }
 ];
 
-export const keywordSuite: TestSuite = {
+const hasKeywordCase : TestCase [] = [
+    {
+        value : "then)",
+        expected : true
+    },
+    {
+        value : "(doend",
+        expected : true
+    },
+    {
+        value : "(or)",
+        expected : true
+    },
+    {
+        value : "{for}",
+        expected : true,
+    },
+    {
+        value : "!and",
+        expected : true
+    },
+    {
+        value : "[dowhile",
+        expected : true
+    },
+    {
+        value : "do;while",
+        expected : true
+    },
+    {
+        value : "whil",
+        expected : false
+    },
+    {
+        value : "no",
+        expected : false
+    }
+]
+
+export const isKeywordSuite: TestSuite = {
     name: 'keyword',
-    cases: keywords,
+    cases: isKeywordCase,
     func: isKeyword
 };
+
+export const hasKeywordSuite : TestSuite = {
+    name : "keyword",
+    cases : hasKeywordCase,
+    func : hasKeyword
+}
