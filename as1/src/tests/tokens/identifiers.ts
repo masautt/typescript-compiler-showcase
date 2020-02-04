@@ -1,7 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var main_1 = require("../../../tokens/main");
-var identifiers = [
+import { isValidIdentifier } from '../../tokens/_exports';
+import { TestCase, TestSuite } from '../../@types/tests';
+
+const identifiers: TestCase[] = [
     {
         value: 'num',
         expected: true
@@ -55,8 +55,9 @@ var identifiers = [
         expected: false
     }
 ];
-exports.identifierSuite = {
+
+export const identifierSuite: TestSuite = {
     name: 'identifier',
     cases: identifiers,
-    func: main_1.isValidIdentifier
+    func: isValidIdentifier
 };

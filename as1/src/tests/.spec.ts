@@ -1,6 +1,7 @@
+import { tokenTestSuites } from './tokens/_exports';
 import { TestSuite } from '../@types/tests';
 
-export const runTestSuites = (suites: TestSuite[]) => {
+const runTestSuites = (suites: TestSuite[]) => {
     suites.forEach((suite: TestSuite) => {
         describe(`Testing VALID [${suite.name}s]`, () =>
             suite.cases
@@ -11,10 +12,12 @@ export const runTestSuites = (suites: TestSuite[]) => {
                 ));
         describe(`Testing INVALID [${suite.name}s]`, () =>
             suite.cases
-                .filter((i) => i.expected === true)
+                .filter((i) => i.expected === false)
                 .forEach((i) =>
                     test(`${i.value} => ${i.expected}`, () =>
                         expect(suite.func(i.value)).toBe(i.expected))
                 ));
     });
 };
+
+runTestSuites(tokenTestSuites);

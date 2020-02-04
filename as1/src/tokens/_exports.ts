@@ -1,12 +1,14 @@
-export { isKeyword } from './data/keywords';
-export { isOperator } from './data/operators';
-export { isSeparator } from './data/separators';
-export { isValidIdentifier } from './data/identifiers';
+export { isKeyword } from './keywords';
+export { isOperator } from './operators';
+export { isSeparator } from './separators';
+export { isValidIdentifier } from './identifiers';
+export { isReal } from './real';
 
-import { isValidIdentifier } from './data/identifiers';
-import { isSeparator } from './data/separators';
-import { isOperator } from './data/operators';
-import { isKeyword } from './data/keywords';
+import { isValidIdentifier } from './identifiers';
+import { isSeparator } from './separators';
+import { isOperator } from './operators';
+import { isKeyword } from './keywords';
+import { isReal } from './real';
 
 import { Token } from '../@types/tokens';
 
@@ -31,6 +33,10 @@ export const getTokens: any = (values: []) =>
             }
             if (isValidIdentifier(value)) {
                 newToken.type = 'identifer';
+                return newToken;
+            }
+            if (isReal(value)) {
+                newToken.type = 'real';
                 return newToken;
             }
             return newToken;

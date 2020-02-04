@@ -1,17 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var keywords_1 = require("./data/keywords");
+var keywords_1 = require("./keywords");
 exports.isKeyword = keywords_1.isKeyword;
-var operators_1 = require("./data/operators");
+var operators_1 = require("./operators");
 exports.isOperator = operators_1.isOperator;
-var separators_1 = require("./data/separators");
+var separators_1 = require("./separators");
 exports.isSeparator = separators_1.isSeparator;
-var identifiers_1 = require("./data/identifiers");
+var identifiers_1 = require("./identifiers");
 exports.isValidIdentifier = identifiers_1.isValidIdentifier;
-var identifiers_2 = require("./data/identifiers");
-var separators_2 = require("./data/separators");
-var operators_2 = require("./data/operators");
-var keywords_2 = require("./data/keywords");
+var real_1 = require("./real");
+exports.isReal = real_1.isReal;
+var identifiers_2 = require("./identifiers");
+var separators_2 = require("./separators");
+var operators_2 = require("./operators");
+var keywords_2 = require("./keywords");
+var real_2 = require("./real");
 exports.getTokens = function (values) {
     return values.map(function (value) {
         var newToken = {
@@ -32,6 +35,10 @@ exports.getTokens = function (values) {
         }
         if (identifiers_2.isValidIdentifier(value)) {
             newToken.type = 'identifer';
+            return newToken;
+        }
+        if (real_2.isReal(value)) {
+            newToken.type = 'real';
             return newToken;
         }
         return newToken;

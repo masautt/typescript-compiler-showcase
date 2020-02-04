@@ -1,7 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var main_1 = require("../../../tokens/main");
-var operators = [
+import { isOperator } from '../../tokens/_exports';
+import { TestCase, TestSuite } from '../../@types/tests';
+
+const operators: TestCase[] = [
     {
         value: '*',
         expected: true
@@ -43,8 +43,9 @@ var operators = [
         expected: false
     }
 ];
-exports.operatorSuite = {
+
+export const operatorSuite: TestSuite = {
     name: 'operator',
     cases: operators,
-    func: main_1.isOperator
+    func: isOperator
 };
