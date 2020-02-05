@@ -1,6 +1,6 @@
 export interface TestCase {
-    value: string;
-    expected: boolean;
+    input: string;
+    output: any;
 }
 
 export interface TestSuite {

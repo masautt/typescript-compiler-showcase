@@ -1,19 +1,8 @@
-export { isKeyword } from './keywords';
-export { hasKeyword } from "./keywords";
-export { isOperator } from './operators';
-export { isSeparator } from './separators';
-export { isValidIdentifier } from './identifiers';
-export { isReal } from './real';
+import { isValidIdentifier, isSeparator, isOperator, isKeyword, isRealnum } from "../tokens/_exports";
 
-import { isValidIdentifier } from './identifiers';
-import { isSeparator } from './separators';
-import { isOperator } from './operators';
-import { isKeyword } from './keywords';
-import { isReal } from './real';
+import { Token } from '../../@types/tokens';
 
-import { Token } from '../@types/tokens';
-
-export const getTokens: any = (values: []) =>
+export const tokenize: any = (values: []) =>
     values.map(
         (value: string): Token => {
             let newToken: Token = {
@@ -36,7 +25,7 @@ export const getTokens: any = (values: []) =>
                 newToken.type = 'identifer';
                 return newToken;
             }
-            if (isReal(value)) {
+            if (isRealnum(value)) {
                 newToken.type = 'real';
                 return newToken;
             }

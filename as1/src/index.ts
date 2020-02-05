@@ -1,6 +1,6 @@
 import { readFile } from 'fs';
-import { getTokens } from './tokens/_exports';
+import { tokenize } from './utils/lexer/_exports';
 
 readFile('./input.txt', 'utf8', (err, data) => {
-    console.log(getTokens(data.split(' ')));
+    console.log(tokenize(data.split(' ')));
 });
