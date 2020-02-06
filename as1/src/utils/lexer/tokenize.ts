@@ -1,4 +1,10 @@
-import { isValidIdentifier, isSeparator, isOperator, isKeyword, isRealnum } from "../tokens/_exports";
+import {
+    isValidIdentifier,
+    isSeparator,
+    isOperator,
+    isKeyword,
+    isRealnum
+} from '../tokens/_exports';
 
 import { Token } from '../../@types/tokens';
 
@@ -22,7 +28,7 @@ export const tokenize: any = (values: []) =>
                 return newToken;
             }
             if (isValidIdentifier(value)) {
-                newToken.type = 'identifer';
+                newToken.type = 'identifier';
                 return newToken;
             }
             if (isRealnum(value)) {

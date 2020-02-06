@@ -1,6 +1,7 @@
 export interface TestCase {
-    input: string;
+    input: any;
     output: any;
+    valid: boolean;
 }
 
 export interface TestSuite {
