@@ -1,36 +1,47 @@
-import { isRealnum } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { isValidIdentifier } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
-const isRealnumCases: TestCase[] = [
+const isValidIdentifierCases: TestCase[] = [
     {
-        input: '193.00',
+        input: 'num',
         output: true,
         isValid: true
     },
     {
-        input: '34',
+        input: 'num1',
         output: true,
         isValid: true
     },
     {
-        input: '2',
+        input: 'num$',
         output: true,
         isValid: true
     },
     {
-        input: '3424',
+        input: 'n1um$',
         output: true,
         isValid: true
     },
     {
-        input: '99999.99',
+        input: 'n1um$$',
         output: true,
         isValid: true
     },
     {
-        input: '0',
+        input: 'n$1um$$',
         output: true,
         isValid: true
+    },
+    {
+        input: '1num',
+        output: false,
+        isValid: false
+    },
+    {
+        input: '$num',
+        output: false,
+        isValid: false
     },
     {
         input: '',
@@ -38,34 +49,29 @@ const isRealnumCases: TestCase[] = [
         isValid: false
     },
     {
-        input: '10f',
+        input: ' ',
         output: false,
         isValid: false
     },
     {
-        input: '200f',
+        input: '$',
         output: false,
         isValid: false
     },
     {
-        input: '!',
+        input: '1',
         output: false,
         isValid: false
     },
     {
-        input: '{',
-        output: false,
-        isValid: false
-    },
-    {
-        input: '-',
+        input: '*',
         output: false,
         isValid: false
     }
 ];
 
-export const isRealnumSuite: TestSuite = {
-    name: 'real',
-    cases: isRealnumCases,
-    func: isRealnum
-};
+runTestSuite({
+    name: 'identifier',
+    cases: isValidIdentifierCases,
+    func: isValidIdentifier
+});

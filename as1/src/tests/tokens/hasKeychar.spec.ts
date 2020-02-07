@@ -1,5 +1,6 @@
-import { TestCase, TestSuite } from '../../../../@types/tests';
-import { hasKeychar } from '../../../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { hasKeychar } from '../../utils/tokens/_exports';
+import { runTestSuite } from '../_exports';
 
 const hasKeycharCases: TestCase[] = [
     {
@@ -29,8 +30,8 @@ const hasKeycharCases: TestCase[] = [
     }
 ];
 
-export const hasKeycharSuite: TestSuite = {
+runTestSuite({
     name: 'operator',
     cases: hasKeycharCases,
     func: hasKeychar
-};
+});

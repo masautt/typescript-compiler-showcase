@@ -1,5 +1,6 @@
-import { isKeyword } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { isKeyword } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
 const isKeywordCases: TestCase[] = [
     {
@@ -119,8 +120,8 @@ const isKeywordCases: TestCase[] = [
     }
 ];
 
-export const isKeywordSuite: TestSuite = {
+runTestSuite({
     name: 'keyword',
     cases: isKeywordCases,
     func: isKeyword
-};
+});

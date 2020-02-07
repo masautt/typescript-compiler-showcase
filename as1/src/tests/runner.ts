@@ -1,9 +1,9 @@
 import { TestSuite } from '../@types/tests';
 
-export const runTestSuites = (suites: TestSuite[]) =>
+export const runTestSuites = (suites: TestSuite[]): void =>
     suites.forEach((suite: TestSuite) => runTestSuite(suite));
 
-export const runTestSuite = (suite: TestSuite) => {
+export const runTestSuite = (suite: TestSuite): void => {
     describe(`Testing VALID [${suite.name}s] with ${suite.func.name}`, () =>
         suite.cases
             .filter((i) => i.isValid === true)

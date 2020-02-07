@@ -1,5 +1,6 @@
-import { hasKeyword } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { hasKeyword } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
 const hasKeywordCases: TestCase[] = [
     {
@@ -49,8 +50,8 @@ const hasKeywordCases: TestCase[] = [
     }
 ];
 
-export const hasKeywordSuite: TestSuite = {
+runTestSuite({
     name: 'keyword',
     cases: hasKeywordCases,
     func: hasKeyword
-};
+});

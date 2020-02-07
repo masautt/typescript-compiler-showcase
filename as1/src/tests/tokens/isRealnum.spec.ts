@@ -1,46 +1,37 @@
-import { isValidIdentifier } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { isRealnum } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
-const isValidIdentifierCases: TestCase[] = [
+const isRealnumCases: TestCase[] = [
     {
-        input: 'num',
+        input: '193.00',
         output: true,
         isValid: true
     },
     {
-        input: 'num1',
+        input: '34',
         output: true,
         isValid: true
     },
     {
-        input: 'num$',
+        input: '2',
         output: true,
         isValid: true
     },
     {
-        input: 'n1um$',
+        input: '3424',
         output: true,
         isValid: true
     },
     {
-        input: 'n1um$$',
+        input: '99999.99',
         output: true,
         isValid: true
     },
     {
-        input: 'n$1um$$',
+        input: '0',
         output: true,
         isValid: true
-    },
-    {
-        input: '1num',
-        output: false,
-        isValid: false
-    },
-    {
-        input: '$num',
-        output: false,
-        isValid: false
     },
     {
         input: '',
@@ -48,29 +39,34 @@ const isValidIdentifierCases: TestCase[] = [
         isValid: false
     },
     {
-        input: ' ',
+        input: '10f',
         output: false,
         isValid: false
     },
     {
-        input: '$',
+        input: '200f',
         output: false,
         isValid: false
     },
     {
-        input: '1',
+        input: '!',
         output: false,
         isValid: false
     },
     {
-        input: '*',
+        input: '{',
+        output: false,
+        isValid: false
+    },
+    {
+        input: '-',
         output: false,
         isValid: false
     }
 ];
 
-export const isValidIdentifierSuite: TestSuite = {
-    name: 'identifier',
-    cases: isValidIdentifierCases,
-    func: isValidIdentifier
-};
+runTestSuite({
+    name: 'real',
+    cases: isRealnumCases,
+    func: isRealnum
+});

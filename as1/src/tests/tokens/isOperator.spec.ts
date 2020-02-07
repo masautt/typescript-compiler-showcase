@@ -1,5 +1,6 @@
-import { isOperator } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { isOperator } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
 const isOperatorCases: TestCase[] = [
     {
@@ -54,8 +55,8 @@ const isOperatorCases: TestCase[] = [
     }
 ];
 
-export const isOperatorSuite: TestSuite = {
+runTestSuite({
     name: 'operator',
     cases: isOperatorCases,
     func: isOperator
-};
+});

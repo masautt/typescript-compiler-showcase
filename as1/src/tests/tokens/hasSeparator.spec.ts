@@ -1,5 +1,6 @@
-import { hasSeparator } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { hasSeparator } from '../../utils/tokens/_exports';
+import { runTestSuite } from '../_exports';
+import { TestCase } from '../../@types/tests';
 
 const hasSeparatorCases: TestCase[] = [
     {
@@ -59,8 +60,8 @@ const hasSeparatorCases: TestCase[] = [
     }
 ];
 
-export const hasSeparatorSuite: TestSuite = {
+runTestSuite({
     name: 'separator',
     cases: hasSeparatorCases,
     func: hasSeparator
-};
+});

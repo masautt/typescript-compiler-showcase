@@ -1,5 +1,6 @@
-import { findKeychars } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { findKeychars } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
 const findKeycharsCases: TestCase[] = [
     {
@@ -80,8 +81,8 @@ const findKeycharsCases: TestCase[] = [
     }
 ];
 
-export const findKeycharsSuite: TestSuite = {
+runTestSuite({
     name: 'keychar',
     cases: findKeycharsCases,
     func: findKeychars
-};
+});

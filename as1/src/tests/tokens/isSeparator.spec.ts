@@ -1,5 +1,6 @@
-import { isSeparator } from '../../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../../@types/tests';
+import { isSeparator } from '../../utils/tokens/_exports';
+import { TestCase } from '../../@types/tests';
+import { runTestSuite } from '../_exports';
 
 const isSeparatorCases: TestCase[] = [
     {
@@ -84,8 +85,8 @@ const isSeparatorCases: TestCase[] = [
     }
 ];
 
-export const isSeparatorSuite: TestSuite = {
+runTestSuite({
     name: 'separator',
     cases: isSeparatorCases,
     func: isSeparator
-};
+});

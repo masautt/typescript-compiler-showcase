@@ -15,13 +15,10 @@ export const getTokens = (values: string[]): Token[] =>
         (value: string): Token => {
             let type: TokenType = 'unknown';
             if (Tokens.isKeyword(value)) type = 'keyword';
-            if (Tokens.isSeparator(value)) type = 'separator';
-            if (Tokens.isOperator(value)) type = 'operator';
-            if (Tokens.isValidIdentifier(value)) type = 'identifier';
-            if (Tokens.isRealnum(value)) type = 'real';
-            return {
-                type: type,
-                value: value
-            };
+            else if (Tokens.isSeparator(value)) type = 'separator';
+            else if (Tokens.isOperator(value)) type = 'operator';
+            else if (Tokens.isValidIdentifier(value)) type = 'identifier';
+            else if (Tokens.isRealnum(value)) type = 'real';
+            return { type: type, value: value };
         }
     );

@@ -11,5 +11,5 @@ export interface TestSuite {
 }
 
 interface TestFunc {
-    (str: string): any;
+    (input: any): any;
 }
