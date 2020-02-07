@@ -1,71 +1,71 @@
-import { isValidIdentifier } from '../../../../utils/tokens/identifiers';
+import { isValidIdentifier } from '../../../../utils/tokens/_exports';
 import { TestCase, TestSuite } from '../../../../@types/tests';
 
 const isValidIdentifierCases: TestCase[] = [
     {
         input: 'num',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'num1',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'num$',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'n1um$',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'n1um$$',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'n$1um$$',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '1num',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '$num',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: ' ',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '$',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '1',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '*',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

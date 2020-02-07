@@ -6,25 +6,16 @@ import {
     isRealnum
 } from '../tokens/_exports';
 
-import {reserved } from "../tokens/_exports";
-
 import { Token } from '../../@types/tokens';
 
 export const tokenize: any = (input: string) => {
-    let values : string[] = input.split(" ");
-    let tokens : Token[] = getTokens(values);
-    let {hasUnknown, indexes} = getUnknowns(tokens);
+    let values: string[] = input.split(' ');
+    let tokens: Token[] = getTokens(values);
+    let unknowns = getUnknowns(tokens);
+    return tokens;
+};
 
-    if (hasUnknown) {
-        indexes.forEach((i : any) => {
-            handleUnknown(tokens[i].value);
-        })
-    }
-
-}
-
-
-const getTokens = (values: string[]) : Token[] =>
+const getTokens = (values: string[]): Token[] =>
     values.map(
         (value: string): Token => {
             let newToken: Token = {
@@ -55,21 +46,20 @@ const getTokens = (values: string[]) : Token[] =>
         }
     );
 
-const getUnknowns = (tokens :Token[]) => {
-    let indexes : any = [];
-    let hasUnknown = false;
-    tokens.forEach((token, i) => {
-        if (token.type === "unknown") {
-            Number(indexes.push[i]); 
-            hasUnknown = true;
+const getUnknowns = (tokens: Token[]) => {
+    let foundUnknowns: any = [];
+    let isFound = false;
+    tokens.forEach((token, index) => {
+        if (token.type === 'unknown') {
+            foundUnknowns.push({
+                value: token.value,
+                type: token.type,
+                index: index
+            });
         }
-    })
+    });
     return {
-        indexes,
-        hasUnknown
-    }
-}
-
-const handleUnknown = (value : string) => {
-
-}
+        foundUnknowns,
+        isFound
+    };
+};

@@ -3,7 +3,7 @@ import { TestCase, TestSuite } from '../../@types/tests';
 
 const tokenizeCases: TestCase[] = [
     {
-        input: "while (fahr < upper) a = 23.00 whileend",
+        input: 'while (fahr < upper) a = 23.00 whileend',
         output: [
             { value: 'while', type: 'keyword' },
             { value: '(fahr', type: 'unknown' },
@@ -14,10 +14,10 @@ const tokenizeCases: TestCase[] = [
             { value: '23.00', type: 'real' },
             { value: 'whileend', type: 'keyword' }
         ],
-        valid: true
+        isValid: true
     },
     {
-        input : "Hello World",
+        input: 'Hello World',
         output: [
             { value: 'Hello', type: 'identifier' },
             {
@@ -25,7 +25,7 @@ const tokenizeCases: TestCase[] = [
                 type: 'identifier'
             }
         ],
-        valid: true
+        isValid: true
     }
 ];
 

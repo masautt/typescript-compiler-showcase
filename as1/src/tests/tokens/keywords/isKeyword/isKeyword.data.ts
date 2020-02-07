@@ -5,117 +5,117 @@ const isKeywordCases: TestCase[] = [
     {
         input: 'int',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'float',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'bool',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'true',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'false',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'if',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'else',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'then',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'endif',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'while',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'whileend',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'do',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'doend',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'for',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'forend',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'input',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'output',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'and',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'or',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'not',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'dowhile',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'next',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'jump',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

@@ -1,51 +1,51 @@
 import { TestCase, TestSuite } from '../../../../@types/tests';
-import { hasOperator } from '../../../../utils/tokens/operators';
+import { hasOperator } from '../../../../utils/tokens/_exports';
 
 const hasOperatorCases: TestCase[] = [
     {
         input: 'hellp*world',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '7+7',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'y=mx+b',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'Platform 9 and 3/4',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '3 is < 4',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '(hello)',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '[world]',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'YouLike?',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'I do!',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

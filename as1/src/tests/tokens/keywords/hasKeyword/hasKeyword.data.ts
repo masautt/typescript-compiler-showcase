@@ -5,47 +5,47 @@ const hasKeywordCases: TestCase[] = [
     {
         input: 'then)',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '(doend',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '(or)',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '{for}',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '!and',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '[dowhile',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'do;while',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'whil',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'no',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

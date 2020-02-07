@@ -1,5 +1,5 @@
 export const isKeyword = (word: string) => keywords.includes(word);
-export const hasKeyword = (word : string) => keywords.some(keyword => word.includes(keyword));
+export const hasKeyword = (word: string) => keywords.some((keyword) => word.includes(keyword));
 
 export const keywords: string[] = [
     'int',

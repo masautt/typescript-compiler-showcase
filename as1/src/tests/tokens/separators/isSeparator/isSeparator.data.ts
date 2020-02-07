@@ -5,82 +5,82 @@ const isSeparatorCases: TestCase[] = [
     {
         input: "'",
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '(',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ')',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '{',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '}',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '[',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ']',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ',',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '.',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ':',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ';',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: ' ',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '&',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '\\',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '~',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: '?',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

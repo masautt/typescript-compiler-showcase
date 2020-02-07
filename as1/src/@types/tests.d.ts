@@ -1,7 +1,7 @@
 export interface TestCase {
     input: any;
     output: any;
-    valid: boolean;
+    isValid: boolean;
 }
 
 export interface TestSuite {
@@ -11,5 +11,5 @@ export interface TestSuite {
 }
 
 interface TestFunc {
-    (str: string): boolean;
+    (str: string): any;
 }

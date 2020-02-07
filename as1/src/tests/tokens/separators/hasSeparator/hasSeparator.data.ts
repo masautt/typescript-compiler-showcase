@@ -5,57 +5,57 @@ const hasSeparatorCases: TestCase[] = [
     {
         input: 'hello)',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: '(world',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'ple[ase',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'hel]p',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'me,',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'i:hate',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'ex;istence',
         output: true,
-        valid: true
+        isValid: true
     },
     {
         input: 'nosepartor',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'Shouldnotreadtrue',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'Niethershouldthisone',
         output: false,
-        valid: false
+        isValid: false
     },
     {
         input: 'hello&gain',
         output: false,
-        valid: false
+        isValid: false
     }
 ];
 

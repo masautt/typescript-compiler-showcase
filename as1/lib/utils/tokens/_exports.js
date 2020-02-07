@@ -12,3 +12,14 @@ var identifiers_1 = require("./identifiers");
 exports.isValidIdentifier = identifiers_1.isValidIdentifier;
 var realnums_1 = require("./realnums");
 exports.isRealnum = realnums_1.isRealnum;
+var separators_2 = require("./separators");
+var keywords_2 = require("./keywords");
+var operators_2 = require("./operators");
+var combineReserved = function (values) {
+    values.concat(separators_2.separators);
+    values.concat(keywords_2.keywords);
+    values.concat(operators_2.operators);
+    return values;
+};
+var values = [];
+exports.reserved = combineReserved(values);

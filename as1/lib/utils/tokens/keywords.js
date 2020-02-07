@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isKeyword = function (word) { return keywords.includes(word); };
-exports.hasKeyword = function (word) { return keywords.some(function (keyword) { return word.includes(keyword); }); };
-var keywords = [
+exports.isKeyword = function (word) { return exports.keywords.includes(word); };
+exports.hasKeyword = function (word) { return exports.keywords.some(function (keyword) { return word.includes(keyword); }); };
+exports.keywords = [
     'int',
     'float',
     'bool',
