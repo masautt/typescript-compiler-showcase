@@ -1,58 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _exports_1 = require("../tokens/_exports");
+var _exports_2 = require("./_exports");
 exports.tokenize = function (input) {
-    var values = input.split(' ');
-    var tokens = getTokens(values);
+    var tokens = exports.getTokens(input.split(' '));
+    if (_exports_2.hasUnknowns(tokens))
+        tokens = _exports_2.getUnknowns(tokens);
     return tokens;
-    // let { hasUnknown, indexes } = getUnknowns(tokens);
-    // if (hasUnknown) {
-    //     indexes.forEach((i: any) => {
-    //         handleUnknown(tokens[i].value);
-    //     });
-    // }
 };
-var getTokens = function (values) {
+exports.getTokens = function (values) {
     return values.map(function (value) {
-        var newToken = {
-            value: value,
-            type: 'unknown'
+        var type = 'unknown';
+        if (_exports_1.isKeyword(value))
+            type = 'keyword';
+        if (_exports_1.isSeparator(value))
+            type = 'separator';
+        if (_exports_1.isOperator(value))
+            type = 'operator';
+        if (_exports_1.isValidIdentifier(value))
+            type = 'identifier';
+        if (_exports_1.isRealnum(value))
+            type = 'real';
+        return {
+            type: type,
+            value: value
         };
-        if (_exports_1.isKeyword(value)) {
-            newToken.type = 'keyword';
-            return newToken;
-        }
-        if (_exports_1.isSeparator(value)) {
-            newToken.type = 'separator';
-            return newToken;
-        }
-        if (_exports_1.isOperator(value)) {
-            newToken.type = 'operator';
-            return newToken;
-        }
-        if (_exports_1.isValidIdentifier(value)) {
-            newToken.type = 'identifier';
-            return newToken;
-        }
-        if (_exports_1.isRealnum(value)) {
-            newToken.type = 'real';
-            return newToken;
-        }
-        return newToken;
     });
 };
-var getUnknowns = function (tokens) {
-    var indexes = [];
-    var hasUnknown = false;
-    tokens.forEach(function (token, i) {
-        if (token.type === 'unknown') {
-            Number(indexes.push[i]);
-            hasUnknown = true;
-        }
-    });
-    return {
-        indexes: indexes,
-        hasUnknown: hasUnknown
-    };
-};
-var handleUnknown = function (value) { };

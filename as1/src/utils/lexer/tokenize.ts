@@ -1,65 +1,27 @@
-import {
-    isValidIdentifier,
-    isSeparator,
-    isOperator,
-    isKeyword,
-    isRealnum
-} from '../tokens/_exports';
+import { Tokens } from '../tokens/_exports';
 
-import { Token } from '../../@types/tokens';
+import { hasUnknowns, getUnknowns } from './_exports';
+
+import { Token, TokenType } from '../../@types/tokens';
 
 export const tokenize: any = (input: string) => {
-    let values: string[] = input.split(' ');
-    let tokens: Token[] = getTokens(values);
-    let unknowns = getUnknowns(tokens);
+    let tokens: Token[] = getTokens(input.split(' '));
+    if (hasUnknowns(tokens)) tokens = getUnknowns(tokens);
     return tokens;
 };
 
-const getTokens = (values: string[]): Token[] =>
+export const getTokens = (values: string[]): Token[] =>
     values.map(
         (value: string): Token => {
-            let newToken: Token = {
-                value: value,
-                type: 'unknown'
+            let type: TokenType = 'unknown';
+            if (Tokens.isKeyword(value)) type = 'keyword';
+            if (Tokens.isSeparator(value)) type = 'separator';
+            if (Tokens.isOperator(value)) type = 'operator';
+            if (Tokens.isValidIdentifier(value)) type = 'identifier';
+            if (Tokens.isRealnum(value)) type = 'real';
+            return {
+                type: type,
+                value: value
             };
-            if (isKeyword(value)) {
-                newToken.type = 'keyword';
-                return newToken;
-            }
-            if (isSeparator(value)) {
-                newToken.type = 'separator';
-                return newToken;
-            }
-            if (isOperator(value)) {
-                newToken.type = 'operator';
-                return newToken;
-            }
-            if (isValidIdentifier(value)) {
-                newToken.type = 'identifier';
-                return newToken;
-            }
-            if (isRealnum(value)) {
-                newToken.type = 'real';
-                return newToken;
-            }
-            return newToken;
         }
     );
-
-const getUnknowns = (tokens: Token[]) => {
-    let foundUnknowns: any = [];
-    let isFound = false;
-    tokens.forEach((token, index) => {
-        if (token.type === 'unknown') {
-            foundUnknowns.push({
-                value: token.value,
-                type: token.type,
-                index: index
-            });
-        }
-    });
-    return {
-        foundUnknowns,
-        isFound
-    };
-};

@@ -1,1 +1,2 @@
-export { tokenize } from "./tokenize";
+export { tokenize, getTokens } from './tokenize';
+export { hasUnknowns, getUnknowns } from './unknowns';
