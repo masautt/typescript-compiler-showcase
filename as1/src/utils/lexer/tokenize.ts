@@ -6,9 +6,25 @@ import {
     isRealnum
 } from '../tokens/_exports';
 
+import {reserved } from "../tokens/_exports";
+
 import { Token } from '../../@types/tokens';
 
-export const tokenize: any = (values: []) =>
+export const tokenize: any = (input: string) => {
+    let values : string[] = input.split(" ");
+    let tokens : Token[] = getTokens(values);
+    let {hasUnknown, indexes} = getUnknowns(tokens);
+
+    if (hasUnknown) {
+        indexes.forEach((i : any) => {
+            handleUnknown(tokens[i].value);
+        })
+    }
+
+}
+
+
+const getTokens = (values: string[]) : Token[] =>
     values.map(
         (value: string): Token => {
             let newToken: Token = {
@@ -38,3 +54,22 @@ export const tokenize: any = (values: []) =>
             return newToken;
         }
     );
+
+const getUnknowns = (tokens :Token[]) => {
+    let indexes : any = [];
+    let hasUnknown = false;
+    tokens.forEach((token, i) => {
+        if (token.type === "unknown") {
+            Number(indexes.push[i]); 
+            hasUnknown = true;
+        }
+    })
+    return {
+        indexes,
+        hasUnknown
+    }
+}
+
+const handleUnknown = (value : string) => {
+
+}
