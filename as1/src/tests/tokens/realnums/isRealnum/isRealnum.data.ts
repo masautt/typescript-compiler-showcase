@@ -1,5 +1,5 @@
-import { isRealnum } from '../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../@types/tests';
+import { isRealnum } from '../../../../utils/tokens/_exports';
+import { TestCase, TestSuite } from '../../../../@types/tests';
 
 const isRealnumCases: TestCase[] = [
     {

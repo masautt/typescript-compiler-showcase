@@ -1,5 +1,5 @@
-import { isKeyword, hasKeyword } from '../../../utils/tokens/_exports';
-import { TestCase, TestSuite } from '../../../@types/tests';
+import { isKeyword } from '../../../../utils/tokens/_exports';
+import { TestCase, TestSuite } from '../../../../@types/tests';
 
 const isKeywordCases: TestCase[] = [
     {
@@ -119,62 +119,8 @@ const isKeywordCases: TestCase[] = [
     }
 ];
 
-const hasKeywordCases: TestCase[] = [
-    {
-        input: 'then)',
-        output: true,
-        valid: true
-    },
-    {
-        input: '(doend',
-        output: true,
-        valid: true
-    },
-    {
-        input: '(or)',
-        output: true,
-        valid: true
-    },
-    {
-        input: '{for}',
-        output: true,
-        valid: true
-    },
-    {
-        input: '!and',
-        output: true,
-        valid: true
-    },
-    {
-        input: '[dowhile',
-        output: true,
-        valid: true
-    },
-    {
-        input: 'do;while',
-        output: true,
-        valid: true
-    },
-    {
-        input: 'whil',
-        output: false,
-        valid: false
-    },
-    {
-        input: 'no',
-        output: false,
-        valid: false
-    }
-];
-
 export const isKeywordSuite: TestSuite = {
     name: 'keyword',
     cases: isKeywordCases,
     func: isKeyword
-};
-
-export const hasKeywordSuite: TestSuite = {
-    name: 'keyword',
-    cases: hasKeywordCases,
-    func: hasKeyword
 };

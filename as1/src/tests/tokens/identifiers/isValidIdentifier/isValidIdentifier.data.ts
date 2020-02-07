@@ -1,5 +1,5 @@
-import { isValidIdentifier } from '../../../utils/tokens/identifiers';
-import { TestCase, TestSuite } from '../../../@types/tests';
+import { isValidIdentifier } from '../../../../utils/tokens/identifiers';
+import { TestCase, TestSuite } from '../../../../@types/tests';
 
 const isValidIdentifierCases: TestCase[] = [
     {
