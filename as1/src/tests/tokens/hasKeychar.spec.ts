@@ -1,4 +1,4 @@
-import { TestCase } from '../../@types/tests';
+import { TestCase } from '../../types/tests';
 import { hasKeychar } from '../../utils/tokens/_exports';
 import { runTestSuite } from '../_exports';
 

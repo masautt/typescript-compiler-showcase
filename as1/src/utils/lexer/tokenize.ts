@@ -2,7 +2,7 @@ import { Tokens } from '../tokens/_exports';
 
 import { hasUnknowns, getUnknowns } from './_exports';
 
-import { Token, TokenType } from '../../@types/tokens';
+import { Token, TokenType } from '../../types/tokens';
 
 export const tokenize: any = (input: string) => {
     let tokens: Token[] = getTokens(input.split(' '));

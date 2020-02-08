@@ -1,4 +1,4 @@
-import { Token } from '../../@types/tokens';
+import { Token } from '../../types/tokens';
 import { isKeychar } from '../tokens/_exports';
 import { getTokens } from './_exports';
 

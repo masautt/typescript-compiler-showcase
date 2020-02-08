@@ -1,4 +1,4 @@
-import { TestSuite } from '../@types/tests';
+import { TestSuite } from '../types/tests';
 
 export const runTestSuites = (suites: TestSuite[]): void =>
     suites.forEach((suite: TestSuite) => runTestSuite(suite));

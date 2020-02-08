@@ -1,5 +1,5 @@
 import { getTokens } from '../../utils/lexer/_exports';
-import { TestCase } from '../../@types/tests';
+import { TestCase } from '../../types/tests';
 import { runTestSuite } from '../_exports';
 
 const getTokensCases: TestCase[] = [

@@ -1,6 +1,6 @@
 import { hasSeparator } from '../../utils/tokens/_exports';
 import { runTestSuite } from '../_exports';
-import { TestCase } from '../../@types/tests';
+import { TestCase } from '../../types/tests';
 
 const hasSeparatorCases: TestCase[] = [
     {

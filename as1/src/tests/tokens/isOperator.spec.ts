@@ -1,5 +1,5 @@
 import { isOperator } from '../../utils/tokens/_exports';
-import { TestCase } from '../../@types/tests';
+import { TestCase } from '../../types/tests';
 import { runTestSuite } from '../_exports';
 
 const isOperatorCases: TestCase[] = [
