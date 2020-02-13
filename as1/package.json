@@ -12,8 +12,12 @@
   "devDependencies": {
     "@types/jest": "^25.1.1",
     "@types/node": "^13.7.0",
+    "@types/table": "^4.0.7",
     "jest": "^25.1.0",
     "ts-jest": "^25.1.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "table": "^5.4.6"
   }
 }
