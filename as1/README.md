@@ -33,3 +33,9 @@ npm start
 ## Testing
 
 All tests are run through Jest, an npm testing library developed by Facebook.
+
+Run `npm test` to run all tests.
+
+## Editing Input
+
+The lexer analyzes `./as1/input.txt`. You can manipulate this file to your liking.
