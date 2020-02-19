@@ -1,9 +1,9 @@
-import { stripAll } from './strippers';
+import { removeAll } from './removers';
 
 import { isKeychar } from './../tokens/_exports';
 
 export const getCleanInput = (input: string): string[] => {
-    const newInput = stripAll(input);
+    const newInput = removeAll(input);
     let cleanInput: string[] = [];
     newInput.split('').forEach((char: string) => {
         if (isKeychar(char) && char !== '.' && char !== ' ') {
@@ -14,5 +14,8 @@ export const getCleanInput = (input: string): string[] => {
             cleanInput.push(char);
         }
     });
-    return cleanInput.join('').split(' ');
+    return cleanInput
+        .join('')
+        .split(' ')
+        .filter((e) => e !== '');
 };

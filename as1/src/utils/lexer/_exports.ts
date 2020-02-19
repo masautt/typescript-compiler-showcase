@@ -1,2 +1,3 @@
 export { tokenize, getTokens } from './tokenize';
-export { stripAll, stripNewLines, stripComments } from './strippers';
+export { removeAll, removeNewLines, removeComments } from './removers';
+export { getCleanInput } from './cleaners';

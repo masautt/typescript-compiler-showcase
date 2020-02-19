@@ -40,6 +40,61 @@ const getTokensCases: TestCase[] = [
             { value: 'world', type: 'identifier' }
         ],
         isValid: true
+    },
+    {
+        input: [
+            'int',
+            'num1',
+            ',',
+            'num2',
+            ',',
+            'large$',
+            'if',
+            '(',
+            'num1',
+            'num2',
+            ')',
+            '{',
+            'large',
+            '=',
+            'num1$',
+            ';',
+            '}',
+            'else',
+            '{',
+            'large',
+            '=',
+            'num2$',
+            ';',
+            '}'
+        ],
+        output: [
+            { value: 'int', type: 'keyword' },
+            { value: 'num1', type: 'identifier' },
+            { value: ',', type: 'separator' },
+            { value: 'num2', type: 'identifier' },
+            { value: ',', type: 'separator' },
+            { value: 'large$', type: 'identifier' },
+            { value: 'if', type: 'keyword' },
+            { value: '(', type: 'separator' },
+            { value: 'num1', type: 'identifier' },
+            { value: 'num2', type: 'identifier' },
+            { value: ')', type: 'separator' },
+            { value: '{', type: 'separator' },
+            { value: 'large', type: 'identifier' },
+            { value: '=', type: 'operator' },
+            { value: 'num1$', type: 'identifier' },
+            { value: ';', type: 'separator' },
+            { value: '}', type: 'separator' },
+            { value: 'else', type: 'keyword' },
+            { value: '{', type: 'separator' },
+            { value: 'large', type: 'identifier' },
+            { value: '=', type: 'operator' },
+            { value: 'num2$', type: 'identifier' },
+            { value: ';', type: 'separator' },
+            { value: '}', type: 'separator' }
+        ],
+        isValid: true
     }
 ];
 

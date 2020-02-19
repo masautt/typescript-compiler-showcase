@@ -1,1 +1,1 @@
-export const isRealnum = (text: string) => text !== '' && !isNaN(+text);
+export const isRealnum = (word: string) => word !== '' && !isNaN(+word);
