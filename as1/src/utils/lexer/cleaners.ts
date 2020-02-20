@@ -1,3 +1,7 @@
+//Name of File : cleaners.ts
+//Purpose      : Responsible for formatting input
+//Summary      : getCleanInput will take in a string and return a string array, after it's stripped all unecessary code
+
 import { removeAll } from './removers';
 
 import { isKeychar } from './../tokens/_exports';

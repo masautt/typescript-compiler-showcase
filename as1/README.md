@@ -6,13 +6,113 @@
 
 > The goal for this TypeScript Lexer is to identify all tokens in `./input.txt` and print them as a table to the console.
 
-### Why JavaScript?
+### Example1 - input.txt
+
+#### Input
+
+`./input.txt`
+
+```
+! Find largest value between two numbers!
+int num1, num2, large$
+if(num1 > num2)
+{
+	large = num1$;
+}
+else
+{
+	large = num2$;
+}
+```
+
+#### Output
+
+`terminal`
+
+> | Token      | Lexeme  |
+> | ---------- | ------- |
+> | keyword    | int     |
+> | identifier | num1    |
+> | separator  | ,       |
+> | identifier | large\$ |
+> | keyword    | if      |
+> | separator  | (       |
+> | identifier | num1    |
+> | operator   | >       |
+> | identifier | num2    |
+> | separator  | )       |
+> | separator  | {       |
+> | identifier | num1\$  |
+> | separator  | ;       |
+> | separator  | }       |
+> | keyword    | else    |
+> | separator  | {       |
+> | identifier | large   |
+> | operator   | =       |
+> | identifier | num2\$  |
+> | separator  | ;       |
+> | separator  | }       |
+
+### Example2 - input2.txt
+
+#### Input
+
+`./input2.txt`
+
+```
+! Declare and assign a number !
+int number;
+number = 9;
+```
+
+#### Output
+
+`terminal`
+
+> | Token      | Lexeme |
+> | ---------- | ------ |
+> | keyword    | int    |
+> | identifier | number |
+> | separator  | ;      |
+> | identifier | number |
+> | operator   | =      |
+> | real       | 9      |
+> | separator  | ;      |
+
+### Example3 - input3.txt
+
+#### Input
+
+`./input3.txt`
+
+```
+while (fahr < upper) a = 23.00 whileend
+```
+
+#### Output
+
+`terminal`
+
+> | Token      | Lexeme   |
+> | ---------- | -------- |
+> | keyword    | while    |
+> | separator  | (        |
+> | identifier | fahr     |
+> | operator   | <        |
+> | identifier | upper    |
+> | operator   | =        |
+> | real       | 23.00    |
+> | keyword    | whileend |
+
+### Implementation
+
+#### Why JavaScript?
 
 This semester, Professor Le instructed us to use whichever language we feel most comfortable with. In our case, that's JavaScript. The syntax is relatively easy to use and its asynchronous syntax might come in handy with Assignments 2 and 3.
 
 With the massive adoption of the web, JavaScript has become the most sought-after programming language. It has proven to have the flexibility to tackle any project. It may not be as efficient as C, but it definetely can run as a compiler.
 
-### Why TypeScript?
+#### Why TypeScript?
 
 JavaScript was meant for the front-end. It started as a scripting language to manipulate the DOM and update HTML and CSS in the browser. In 2009, a Software Developer named Ryan Dahl, saw the potential in JavaScript and ported its runtime engine server-side called Node.js.
 
@@ -28,11 +128,12 @@ Facebook also released their own version of a statically typed JavaScript supers
 
 ## 2. Getting Started
 
+**NOTE**: If you're running this project on the [repl.it link](https://repl.it/github/masautt/typescript-compiler), there is no installation required. Just click the green `RUN` at the top.
+
 This project requires the following :
 
 1. [Git](https://git-scm.com/)
 2. [Node.js](https://nodejs.org/)
-3. [TypeScript](https://www.typescriptlang.org/)
 
 ### Installing Tools
 

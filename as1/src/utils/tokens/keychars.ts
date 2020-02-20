@@ -1,3 +1,7 @@
+//Name of File : keychars.ts
+//Purpose      : Tests to see if char is a keychar
+//Summary      : Creates keychars from combining the separators and operators arrays. This comes in handy with getCleanInput
+
 import { separators } from './separators';
 import { operators } from './operators';
 
