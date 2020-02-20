@@ -20,26 +20,6 @@ Students will be asked to build their own compiler that implements the following
 2. Syntax Analyzer (Assignment 2)
 3. Semantic Analyzer (Assignment 3)
 
-## Why JavaScript?
-
-For this project, students were suggested to use either C, C++, C#, Java, or Python. I've written several applications in C++ and C# and I've seen how long it takes to get up and running with these enterprise languages. I also considered giving Python a chance, but I've been avoiding the language ever since [coding breaking change from Python 2 to 3](https://snarky.ca/why-python-3-exists/).
-
-This semester, Professor Le lifted the language limitations and instructed us to use whichever language we feel most comfortable with; and in this case, for me its JavaScript.
-
-JavaScript is being used everywhere and has been proven to have the flexibility to tackle any project. It may not be as efficient as C or as easy to develop in as Python, but I know it will make for an excellent language to build a compiler.
-
-## Why TypeScript?
-
-As much as I love writing my applications in JavaScript, there are times I want to pull my hair out and go back to C# or Java. JavaScript has proven to be a difficult language for new developers due to it's confusing runtime errors and lack of static types.
-
-Luckily, Microsoft saw this as an issue as well when they began developing their [Visual Studio Code editor](https://code.visualstudio.com/) in JavaScript. The code-base became so large that it was difficult to determine where runtime errors were originating from.
-
-In 2012, Microsoft announced it's efforts to develop a superset of JavaScript that allowed for statically typed variables as well as optional implementations of traditional object oriented fundamentals.
-
-Facebook also released their own version of a statically typed JavaScript superset, Flow, in 2014, but as you can see from [npm trends](https://www.npmtrends.com/flow-bin-vs-typescript), it's clear TypeScript is king.
-
-![Flow vs. TypeScript](https://i.imgur.com/pwCzygL.png)
-
 # Getting Started
 
 This project requires the following :
