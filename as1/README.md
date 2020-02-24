@@ -220,7 +220,7 @@ Run `npm test` to run all tests in `./as1/src/tests`.
 
 ![Code Walkthrough](./img/CodeWalkthrough.PNG 'Code Walkthrough')
 
-### Final State Machines for Regex Tests
+### Finite State Machines for Regular Expressions
 
 We mostly relied on JavaScript's built in methods for identifying token classes, but we have included some alternative Regular Expressions as well as their representative finite state diagrams.
 
@@ -246,6 +246,8 @@ export const isRealnumRegex = (word: string) => RegExp('^[0-9]+([\\,\\.][0-9]+)?
 
 ![isRealnum FSM](./img/isRealnumFSM.PNG 'isRealnumFSM')
 
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/Zc2qGTTUdxfO0cqK).
+
 #### Finding `Identifiers` Using Regex
 
 For valid `identifiers`, it was easier to use Regex than any built in JavaScript method.
@@ -256,6 +258,8 @@ export const isValidIdentifier = (word: string) => RegExp('^[a-zA-Z][a-zA-Z0-9$]
 ```
 
 ![isValidIdentifier FSM](./img/isValidIdentifierFSM.PNG 'isValidIdentifierFSM')
+
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/jllYlw4_49YRICRb).
 
 #### Finding `Keywords` Using Array Methods
 
@@ -303,6 +307,8 @@ export const isKeywordRegex = (word: string) =>
 
 ![isKeyword FSM](./img/isKeywordFSM.PNG 'isKeywordFSM')
 
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/vAS27APO4sbuDPI-).
+
 #### Finding `Operators` Using Array Methods
 
 For finding `operators`, we found it easier to identify all possible `operators` in an array and then use JavaScript's Array Prototype `includes` to see if that string is in the predefined array.
@@ -324,6 +330,8 @@ export const isOperatorRegex = (char: string) => RegExp('(*|+|-|=|/|>|<|%)$').te
 ```
 
 ![isOperator FSM](./img/isOperatorFSM.PNG 'isOperatorFSM')
+
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/AfG2HmWdSxbz2jSp).
 
 #### Finding `Separators` Using Array Methods
 
@@ -348,6 +356,8 @@ export const isSeparatorRegex = (char: string) =>
 
 ![isSeparator FSM](./img/isSeparatorFSM.PNG 'isSeparatorFSM')
 
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/u74DLjJOJmaoeZ5K).
+
 #### Removing `Comments` Using Regex
 
 The following Regex will replace any substring of the input string that's wrapped in exclamation marks (`!!`) with a blank space (`_`).
@@ -359,6 +369,8 @@ export const removeComments = (input: string) => input.replace(/(!(.*?)!)/g, ' '
 
 ![removeComments FSM](./img/removeCommentsFSM.PNG 'removeCommentsFSM')
 
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/N9Qd4xPXddaFYSI2).
+
 #### Removing `New Lines` Using Regex
 
 The following Regex will replace any substring of the input string that contains new lines (`\n`), tabs (`\t`), and carriage returns (`\r`) with a blank space (`_`).
@@ -368,6 +380,8 @@ export const removeNewLines = (input: string) => input.replace(/(\r\n|\n|\r|\t)/
 ```
 
 ![removeNewLines FSM](./img/removeNewLinesFSM.PNG 'removeNewLinesFSM')
+
+You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/chOnnNwxCbG3YUmc).
 
 ### Data Structures
 
