@@ -8,3 +8,6 @@ export const hasSeparator = (word: string) =>
     separators.some((separator) => word.includes(separator));
 
 export const separators: string[] = ["'", '(', ')', '{', '}', '[', ']', ',', '.', ':', ';', ' '];
+
+export const isSeparatorRegex = (char: string) =>
+    RegExp(`('|\(|\)|{||}|\[|\]|,|.|\:|;| )$`).test(char);

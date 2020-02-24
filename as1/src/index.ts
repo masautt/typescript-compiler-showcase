@@ -2,7 +2,7 @@
 //Purpose      : Starting file for this typescript project
 //Summary      : Houses startLexer function that takes the path to a txt file, checks if it's not too large, then runs tokenize( )
 
-import { FILE_SIZE_LIMIT_MSG, FILE_SIZE_LIMIT } from './utils/env';
+import { FILE_SIZE_LIMIT_MSG, FILE_SIZE_LIMIT, FILE_NAME } from './utils/env';
 import { readFile, stat, Stats } from 'fs';
 import { tokenize } from './utils/lexer/_exports';
 
@@ -17,4 +17,4 @@ const startLexer = (path: string) =>
               )
     );
 
-startLexer('./input.txt');
+startLexer(FILE_NAME);

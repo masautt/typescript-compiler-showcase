@@ -1,12 +1,15 @@
 # Assignment 1 – Lexical Analyzer
 
-**NOTE**: This is converted markdown-to-pdf file. For proper formatting, please see the [original markdown file](https://github.com/masautt/typescript-compiler/blob/master/as1/README.md).
+**NOTE**: This is a converted markdown-to-pdf file. For proper formatting, please see the [original markdown file](https://github.com/masautt/typescript-compiler/blob/master/as1/README.md).
 
 ## 1. Problem Statement
 
-> The goal for this TypeScript Lexer is to identify all tokens in `./input.txt` and print them as a table to the console.
+> The goal for this TypeScript Lexer is to identify all tokens in `./input.txt` and print them as a table to the console. The possible token classes are `identifiers`, `keywords`, `operators`, `separators`, and `realnums`. The Lexer will not consider any comments encapsulated by and exclamation mark (`!`).
+> If the Lexer fails to find a token class for a given input substring it will print an error message to the console and identify the missing token class as `unknown`.
 
-### Example1 - input.txt
+### Examples
+
+### Ex. 1 - input.txt
 
 #### Input
 
@@ -53,7 +56,7 @@ else
 > | separator  | ;       |
 > | separator  | }       |
 
-### Example2 - input2.txt
+### Ex 2 - input2.txt
 
 #### Input
 
@@ -79,7 +82,7 @@ number = 9;
 > | real       | 9      |
 > | separator  | ;      |
 
-### Example3 - input3.txt
+### Ex 3 - input3.txt
 
 #### Input
 
@@ -128,24 +131,9 @@ Facebook also released their own version of a statically typed JavaScript supers
 
 ## 2. Getting Started
 
-**NOTE**: If you're running this project on the [repl.it link](https://repl.it/github/masautt/typescript-compiler), there is no installation required. Just click the green `RUN` at the top.
+**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/github/masautt/typescript-compiler).
 
-This project requires the following :
-
-1. [Git](https://git-scm.com/)
-2. [Node.js](https://nodejs.org/)
-
-### Installing Tools
-
-#### Git
-
-Git is a free and open source distributed version control system. It is used to download the code for this project. You are most likely viewing this document on Github, the most popular website for hosting git projects.
-
-| OS      | Link                               |
-| ------- | ---------------------------------- |
-| Windows | https://git-scm.com/download/win   |
-| MacOS   | https://git-scm.com/download/mac   |
-| Linux   | https://git-scm.com/download/linux |
+### Requirements
 
 #### Node.js
 
@@ -167,13 +155,13 @@ TypeScript can be installed using [NPM](https://www.npmjs.com/), the Node Packag
 
 TypeScript is included as a dev dependency in each assignment's `package.json`. When you run `npm install` in a a folder with a `package.json` file it will install all packages listed in that file.
 
-If you wish to install TypeScript globally on your machine you can use the following :
+To run the TypeScript Transpiler, you must have TypeScritp installed globally on your machine with :
 
 ```bash
 npm install -g typescript
 ```
 
-**Note**: make sure you have Node.js and npm installed at this point for the above command to work!
+**Note**: make sure you have Node.js and npm installed at this point for the above command to work
 
 ### Cloning the Repo
 
@@ -212,7 +200,7 @@ npm start
 
 ### Editing the Input to the Lexer
 
-The lexer analyzes `./as1/input.txt`. You can manipulate this file to your liking.
+The lexer analyzes `./as1/input.txt` by default. You can manipulate this file to your liking or change the input file name (`FILE_NAME`) in `./src/utils/env.ts`.
 
 ### Testing
 
@@ -230,17 +218,166 @@ Run `npm test` to run all tests in `./as1/src/tests`.
 
 ### Code Walkthrough
 
-![Code Walkthrough](./img/CodeWalkthrough.PNG 'Cove Walkthrough')
+![Code Walkthrough](./img/CodeWalkthrough.PNG 'Code Walkthrough')
+
+### Final State Machines for Regex Tests
+
+We mostly relied on JavaScript's built in methods for identifying token classes, but we have included some alternative Regular Expressions as well as their representative finite state diagrams.
+
+#### Finding `Realnums` Using Built in Methods
+
+For `realnums`, we checked the input string with the `isNaN` function. `NaN` is a JavaScript global property for representing values that are Not-A-Number.
+
+```typescript
+//  ./src/utils/tokens/realnums.ts
+export const isRealnum = (word: string) => word !== '' && !isNaN(+word);
+```
+
+If the string is not empty and the `isNaN` function returns `false`, then it is a `realnum`.
+
+#### Finding `Realnums` Using Regex
+
+The following Regex has the same functionality as the `isRealnum` function above.
+
+```typescript
+//  ./src/utils/tokens/realnums.ts
+export const isRealnumRegex = (word: string) => RegExp('^[0-9]+([\\,\\.][0-9]+)?$').test(word);
+```
+
+![isRealnum FSM](./img/isRealnumFSM.PNG 'isRealnumFSM')
+
+#### Finding `Identifiers` Using Regex
+
+For valid `identifiers`, it was easier to use Regex than any built in JavaScript method.
+
+```typescript
+//  ./src/utils/tokens/identifiers.ts
+export const isValidIdentifier = (word: string) => RegExp('^[a-zA-Z][a-zA-Z0-9$]*$').test(word);
+```
+
+![isValidIdentifier FSM](./img/isValidIdentifierFSM.PNG 'isValidIdentifierFSM')
+
+#### Finding `Keywords` Using Array Methods
+
+For finding `keywords`, we found it easier to identify all possible `keywords` in an array and then use JavaScript's Array Prototype `includes` to see if that string is in the predefined array.
+
+```typescript
+//  ./src/utils/tokens/keywords.ts
+export const keywords: string[] = [
+    'int',
+    'float',
+    'bool',
+    'true',
+    'false',
+    'if',
+    'else',
+    'then',
+    'endif',
+    'while',
+    'whileend',
+    'do',
+    'doend',
+    'for',
+    'forend',
+    'input',
+    'output',
+    'and',
+    'or',
+    'not'
+];
+
+export const isKeyword = (word: string) => keywords.includes(word);
+```
+
+#### Finding `Keywords` Using Regex
+
+The following Regex has the same functionality as the `isKeyword` function above.
+
+```typescript
+//  ./src/utils/tokens/keywords.ts
+export const isKeywordRegex = (word: string) =>
+    RegExp(
+        '(int|float|bool|true|false|if|else|then|endif|while|whileend|do|doend|for|forend|input|output|and|or|not)$'
+    ).test(word);
+```
+
+![isKeyword FSM](./img/isKeywordFSM.PNG 'isKeywordFSM')
+
+#### Finding `Operators` Using Array Methods
+
+For finding `operators`, we found it easier to identify all possible `operators` in an array and then use JavaScript's Array Prototype `includes` to see if that string is in the predefined array.
+
+```typescript
+//  ./src/utils/tokens/operators.ts
+export const operators: string[] = ['*', '+', '-', '=', '/', '>', '<', '%'];
+
+export const isOperator = (char: string) => operators.includes(char);
+```
+
+#### Finding `Operators` Using Regex
+
+The following Regex has the same functionality as the `isOperator` function above.
+
+```typescript
+//  ./src/utils/tokens/operators.ts
+export const isOperatorRegex = (char: string) => RegExp('(*|+|-|=|/|>|<|%)$').test(char);
+```
+
+![isOperator FSM](./img/isOperatorFSM.PNG 'isOperatorFSM')
+
+#### Finding `Separators` Using Array Methods
+
+For finding `separators`, we found it easier to identify all possible `separators` in an array and then use JavaScripts Array Prototype `includes` to see if that string is in the predefined array.
+
+```typescript
+//  ./src/utils/tokens/separators.ts
+
+export const separators: string[] = ["'", '(', ')', '{', '}', '[', ']', ',', '.', ':', ';', ' '];
+export const isSeparator = (char: string) => separators.includes(char);
+```
+
+#### Finding `Separators` Using Regex
+
+The following Regex has the same functionality as the `isSeparator` function above.
+
+```typescript
+//  ./src/utils/tokens/separators.ts
+export const isSeparatorRegex = (char: string) =>
+    RegExp(`('|\(|\)|{||}|\[|\]|,|.|\:|;| )$`).test(char);
+```
+
+![isSeparator FSM](./img/isSeparatorFSM.PNG 'isSeparatorFSM')
+
+#### Removing `Comments` Using Regex
+
+The following Regex will replace any substring of the input string that's wrapped in exclamation marks (`!!`) with a blank space (`_`).
+
+```typescript
+// ./src/utils/lexer/removers.ts
+export const removeComments = (input: string) => input.replace(/(!(.*?)!)/g, ' ');
+```
+
+![removeComments FSM](./img/removeCommentsFSM.PNG 'removeCommentsFSM')
+
+#### Removing `New Lines` Using Regex
+
+The following Regex will replace any substring of the input string that contains new lines (`\n`), tabs (`\t`), and carriage returns (`\r`) with a blank space (`_`).
+
+```typescript
+export const removeNewLines = (input: string) => input.replace(/(\r\n|\n|\r|\t)/gm, ' ');
+```
+
+![removeNewLines FSM](./img/removeNewLinesFSM.PNG 'removeNewLinesFSM')
 
 ### Data Structures
 
-This project only uses the default JavaScript array. No complex data structures are used.
+As for data structures, the lexer relies on the default JavaScript arrays. No complex data structures are used at the moment.
 
-We could achieve faster runtimes with linked lists, but it's rather difficult to implement them in JavaScript, given the lack of pointers and deference operators.
+We might achieve faster runtimes with linked lists, but it's rather difficult to implement them in JavaScript, given the lack of pointers and deference operators.
 
 ### Algorithms
 
-The only real algorithmic parts of this program are found in `cleaners.ts` and `tokenize.ts`.
+The two primary algorithms are `getCleanInput( )` in `./src/utils/lexer/cleaners.ts` and `getTokens( )` in `./src/utils/lexer/tokenize.ts`.
 
 #### getCleanInput( )
 
@@ -317,7 +454,7 @@ export const getTokens = (input: string[]): Token[] =>
 
 ## 4. Limitations
 
-To avoid any slowdowns with I/O, there is a `5KB` file size limit on input.txt. If the `stats.size` value is larger than the set `FILE_SIZE_LIMIT` in `./utils/env`, the lexer will not run on the file.
+To avoid any slowdowns with I/O, there is a `5KB` file size limit on input.txt. If the `stats.size` value is larger than the set `FILE_SIZE_LIMIT` in `./src/utils/env`, the lexer will not run on the file.
 
 ### Implementation
 
