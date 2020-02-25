@@ -4,8 +4,20 @@
 
 ## 1. Problem Statement
 
-> The goal for this TypeScript Lexer is to identify all tokens in `./input.txt` and print them as a table to the console. The possible token classes are `identifiers`, `keywords`, `operators`, `separators`, and `realnums`. The Lexer will not consider any comments encapsulated by and exclamation mark (`!`).
-> If the Lexer fails to find a token class for a given input substring it will print an error message to the console and identify the missing token class as `unknown`.
+The goal for this TypeScript Lexer is to identify all tokens in `./input.txt`, print them as a table to the console, and as an object array to `./output.json`. 
+
+The possible token classes are `identifiers`, `keywords`, `operators`, `separators`, and `realnums`.
+
+|Token|Description|Example|
+|-|-|-|
+|`identifier`|A string that starts with a letter and can be followed by an alphanumeric character or a dollar sign ($)|`myId123$`|
+|`keywords`|`int float bool true false if else thenendif while whileend do doend for forend input output and or not`|`int`|
+|`operators`|`*` `+` `-` `=` `/` `>` `<` `%`|`/`|
+|`separators`|`'` `(` `)` `{` `}` `[` `]` `.` `:` `;` ` `|`;`|
+|`realnums`|Doubles or integers|`20.98`|
+ 
+ 
+ The Lexer will not consider any comments encapsulated by and exclamation mark (`!`). If the Lexer fails to find a token class for a given input substring it will print an error message to the console and identify the missing token class as `unknown`.
 
 ### Examples
 
@@ -440,6 +452,26 @@ export const getCleanInput = (input: string): string[] => {
 | 4   | `else cleanInput.push(char)`                             | if not keychar then add it to the new array without padding                                                 |
 | 5   | `cleanInput.join('').split(' ').filter((e) => e !== '')` | make the array into a string, split it back into an array based off spaces and then remove any extra spaces |
 
+This function is necessary to properly identify `separators` and `operators`. Since we are walking through an array on inputs separated by spaces, it is necessary to pad these keychars with spaces. This avoids the following :
+
+> `input` : fahr
+
+> `output` (without added spaces) :
+
+|#|Lexeme|Token|
+|---|---|---|
+|1|(fahr)|unknown|
+
+> `output` (with added spaces) :
+
+|#|Lexeme|Token|
+|---|---|---|
+|1|(|separator|
+|2|fahr|identifier|
+|3|)|separator|
+
+
+
 #### getTokens( )
 
 #### Purpose
@@ -477,6 +509,11 @@ export const getTokens = (input: string[]): Token[] =>
 | 8   | `else if (Tokens.isRealnum(value)) type = 'real';`               | if the word passes the regex test in `realnums.ts`, mark it as a `real`                    |
 | 8   | `return { type: type, value: value };`                           | return the new token                                                                       |
 
+This function generates the output for `./output.json`. It is also printed to the console in a table.
+```json
+[{"type":"keyword","value":"int"},{"type":"identifier","value":"num1"},{"type":"separator","value":","},{"type":"identifier","value":"num2"}]
+```
+
 ## 4. Limitations
 
 To avoid any slowdowns with I/O, there is a `5KB` file size limit on input.txt. If the `stats.size` value is larger than the set `FILE_SIZE_LIMIT` in `./src/utils/env`, the lexer will not run on the file.
@@ -512,13 +549,15 @@ If a `real` is greater than 10000 (after Math.abs()) then it will output a warni
 const isOverRealnumLimit = (word: string) => Math.abs(parseInt(word)) > REALNUM_LIMIT;
 ```
 
-All limitations are defined in `./src/utils/env` ;
+All limitations are defined in `./src/utils/env`:
 
 ```typescript
 export const IDENTIFIER_LIMIT = 20; //String Length
 export const REALNUM_LIMIT = 10000; //Number limit
 export const FILE_SIZE_LIMIT = 5000; //In bytes
 ```
+
+At the moment, only the `FILE_SIZE_LIMIT` prevents the lexer from running. `IDENTIFIER_LIMIT` and `REALNUM_LIMIT` output errors to the console, but the lexer will still run.
 
 ### Other possible limitations
 
