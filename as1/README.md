@@ -4,7 +4,7 @@
 
 ## 1. Problem Statement
 
-The goal for this TypeScript Lexer is to identify all tokens in `./input.txt`, print them as a table to the console, and as an object array to `./output.json`. 
+The goal for this TypeScript Lexer is to identify all tokens in `./input.txt`, print them as a table to the console, and save them an object array to `./output.json`. 
 
 The possible token classes are `identifiers`, `keywords`, `operators`, `separators`, and `realnums`.
 
@@ -68,6 +68,11 @@ else
 > | separator  | ;       |
 > | separator  | }       |
 
+`./output.json`
+
+```json
+[{"type":"keyword","value":"int"},{"type":"identifier","value":"num1"},{"type":"separator","value":","},{"type":"identifier","value":"num2"},{"type":"separator","value":","},{"type":"identifier","value":"large$"},{"type":"keyword","value":"if"},{"type":"separator","value":"("},{"type":"identifier","value":"num1"},{"type":"operator","value":">"},{"type":"identifier","value":"num2"},{"type":"separator","value":")"},{"type":"separator","value":"{"},{"type":"identifier","value":"large"},{"type":"operator","value":"="},{"type":"identifier","value":"num1$"},{"type":"separator","value":";"},{"type":"separator","value":"}"},{"type":"keyword","value":"else"},{"type":"separator","value":"{"},{"type":"identifier","value":"large"},{"type":"operator","value":"="},{"type":"identifier","value":"num2$"},{"type":"separator","value":";"},{"type":"separator","value":"}"}]
+```
 ### Ex 2 - input2.txt
 
 #### Input
@@ -94,6 +99,12 @@ number = 9;
 > | real       | 9      |
 > | separator  | ;      |
 
+`./output.json`
+
+```json
+[{"type":"keyword","value":"int"},{"type":"identifier","value":"number"},{"type":"separator","value":";"},{"type":"identifier","value":"number"},{"type":"operator","value":"="},{"type":"real","value":"9"},{"type":"separator","value":";"}]
+```
+
 ### Ex 3 - input3.txt
 
 #### Input
@@ -118,6 +129,12 @@ while (fahr < upper) a = 23.00 whileend
 > | operator   | =        |
 > | real       | 23.00    |
 > | keyword    | whileend |
+
+`./output.json`
+
+```json
+[{"type":"keyword","value":"while"},{"type":"separator","value":"("},{"type":"identifier","value":"fahr"},{"type":"operator","value":"<"},{"type":"identifier","value":"upper"},{"type":"separator","value":")"},{"type":"identifier","value":"a"},{"type":"operator","value":"="},{"type":"real","value":"23.00"},{"type":"keyword","value":"whileend"}]
+```
 
 ### Implementation
 
