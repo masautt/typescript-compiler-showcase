@@ -1,6 +1,7 @@
 # CPSC 323 - Compilers and Programming Languages
 
 ### Lecturer : Anthony Le
+![Demo](./as1/img/demo.GIF 'demo')
 
 ## Background
 

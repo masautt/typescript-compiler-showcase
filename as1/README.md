@@ -2,6 +2,10 @@
 
 **NOTE**: This is a converted markdown-to-pdf file. For proper formatting, please see the [original markdown file](https://github.com/masautt/typescript-compiler/blob/master/as1/README.md).
 
+**NOTE**: This project requires Node.js 12.16 and above, which is not available on campus computers. You can run this project online at this [repl.it project](https://repl.it/@msautter/typescript-compiler).
+
+![Demo](./img/demo.GIF 'demo')
+
 ## 1. Problem Statement
 
 The goal for this TypeScript Lexer is to identify all tokens in `./input.txt`, print them as a table to the console, and save them an object array to `./output.json`. 
@@ -160,7 +164,7 @@ Facebook also released their own version of a statically typed JavaScript supers
 
 ## 2. Getting Started
 
-**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/github/masautt/typescript-compiler).
+**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/@msautter/typescript-compiler).
 
 ### Requirements
 
@@ -517,6 +521,8 @@ export const getTokens = (input: string[]): Token[] =>
             }
         );
 ```
+
+![getTokensFSM](./img/getTokensFSM.PNG 'getTokensFSM')
 
 ##### Steps
 
