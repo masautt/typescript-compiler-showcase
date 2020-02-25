@@ -5,7 +5,7 @@
 import { table, getBorderCharacters } from 'table';
 import chalk from 'chalk';
 import { Token } from '../../types/tokens';
-import { IDENTIFIER_LIMIT, REALNUM_LIMIT, FILE_SIZE_LIMIT, FILE_NAME } from '../env';
+import { IDENTIFIER_LIMIT, REALNUM_LIMIT, FILE_SIZE_LIMIT, INPUT_FILE_NAME } from '../env';
 
 export const printTokenTable = (tokens: Token[]) => {
     let output = [['#', 'Lexeme', 'Token']];
@@ -88,7 +88,7 @@ export const printTokenTable = (tokens: Token[]) => {
     );
 };
 
-export const printFileErrors = () => console.log(`${chalk.red("ERROR :")} ${chalk.yellow(FILE_NAME)} is too large. File limit size is ${chalk.yellow(FILE_SIZE_LIMIT /
+export const printFileErrors = () => console.log(`${chalk.red("ERROR :")} ${chalk.yellow(INPUT_FILE_NAME)} is too large. File limit size is ${chalk.yellow(FILE_SIZE_LIMIT /
     1000 + " KB")}. You can change the ${chalk.yellow("FILE_SIZE_LIMIT")} in '${chalk.yellow("./utils/env")}'`)
 
 

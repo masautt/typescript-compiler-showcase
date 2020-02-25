@@ -9,4 +9,5 @@ export const FILE_SIZE_LIMIT = 5000; //In bytes
 
 //ENV VARIABLES
 
-export const FILE_NAME = './input.txt';
+export const INPUT_FILE_NAME = './input.txt';
+export const OUTPUT_FILE_NAME = './output.json';

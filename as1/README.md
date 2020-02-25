@@ -192,6 +192,7 @@ npm start
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
     "table": "^5.4.6"
   }
 ```
@@ -248,6 +249,10 @@ export const isRealnumRegex = (word: string) => RegExp('^[0-9]+([\\,\\.][0-9]+)?
 
 You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/Zc2qGTTUdxfO0cqK).
 
+According to the [Assignment 1 Instructions](https://moodle-2019-2020.fullerton.edu/pluginfile.php/3854411/mod_resource/content/6/Assignment%201%20AnthonyLe2019.pdf), we are required to show our own FSM and state table for identifying realnums with RegEx :
+
+![isRealnum ST](./img/isRealnumST.PNG 'isRealnumST')
+
 #### Finding `Identifiers` Using Regex
 
 For valid `identifiers`, it was easier to use Regex than any built in JavaScript method.
@@ -260,6 +265,10 @@ export const isValidIdentifier = (word: string) => RegExp('^[a-zA-Z][a-zA-Z0-9$]
 ![isValidIdentifier FSM](./img/isValidIdentifierFSM.PNG 'isValidIdentifierFSM')
 
 You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.com/r/jllYlw4_49YRICRb).
+
+According to the [Assignment 1 Instructions](https://moodle-2019-2020.fullerton.edu/pluginfile.php/3854411/mod_resource/content/6/Assignment%201%20AnthonyLe2019.pdf), we are required to show our own FSM and state table for identifying valid identifiers with RegEx :
+
+![isValidIdentifier ST](./img/isValidIdentifierST.PNG 'isValidIdentifierST')
 
 #### Finding `Keywords` Using Array Methods
 

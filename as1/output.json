@@ -1,0 +1,110 @@
+[
+    {
+        "type": "keyword",
+        "value": "int"
+    },
+    {
+        "type": "identifier",
+        "value": "num1"
+    },
+    {
+        "type": "separator",
+        "value": ","
+    },
+    {
+        "type": "identifier",
+        "value": "num2"
+    },
+    {
+        "type": "separator",
+        "value": ","
+    },
+    {
+        "type": "identifier",
+        "value": "large$"
+    },
+    {
+        "type": "keyword",
+        "value": "if"
+    },
+    {
+        "type": "separator",
+        "value": "("
+    },
+    {
+        "type": "identifier",
+        "value": "num1"
+    },
+    {
+        "type": "operator",
+        "value": ">"
+    },
+    {
+        "type": "identifier",
+        "value": "num2"
+    },
+    {
+        "type": "separator",
+        "value": ")"
+    },
+    {
+        "type": "separator",
+        "value": "{"
+    },
+    {
+        "type": "identifier",
+        "value": "large"
+    },
+    {
+        "type": "operator",
+        "value": "="
+    },
+    {
+        "type": "identifier",
+        "value": "num1$"
+    },
+    {
+        "type": "separator",
+        "value": ";"
+    },
+    {
+        "type": "separator",
+        "value": "}"
+    },
+    {
+        "type": "keyword",
+        "value": "else"
+    },
+    {
+        "type": "separator",
+        "value": "{"
+    },
+    {
+        "type": "identifier",
+        "value": "large"
+    },
+    {
+        "type": "operator",
+        "value": "="
+    },
+    {
+        "type": "identifier",
+        "value": "num2$"
+    },
+    {
+        "type": "separator",
+        "value": ";"
+    },
+    {
+        "type": "separator",
+        "value": "}"
+    },
+    {
+        "type": "identifier",
+        "value": "hello"
+    },
+    {
+        "type": "identifier",
+        "value": "world"
+    }
+]
