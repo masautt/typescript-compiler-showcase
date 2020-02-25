@@ -17,7 +17,7 @@ The possible token classes are `identifiers`, `keywords`, `operators`, `separato
 |`realnums`|Doubles or integers|`20.98`|
  
  
- The Lexer will not consider any comments encapsulated by and exclamation mark (`!`). If the Lexer fails to find a token class for a given input substring it will print an error message to the console and identify the missing token class as `unknown`.
+ The Lexer will not consider any comments encapsulated by an exclamation mark (`!`). If the Lexer fails to find a token class for a given input substring it will print an error message to the console and identify the missing token class as `unknown`.
 
 ### Examples
 
@@ -142,7 +142,7 @@ while (fahr < upper) a = 23.00 whileend
 
 This semester, Professor Le instructed us to use whichever language we feel most comfortable with. In our case, that's JavaScript. The syntax is relatively easy to use and its asynchronous syntax might come in handy with Assignments 2 and 3.
 
-With the massive adoption of the web, JavaScript has become the most sought-after programming language. It has proven to have the flexibility to tackle any project. It may not be as efficient as C, but it definetely can run as a compiler.
+With the massive adoption of the web, JavaScript has become the most sought-after programming language. It has proven to have the flexibility to tackle any project. It may not be as efficient as C, but it definitely can run as a compiler.
 
 #### Why TypeScript?
 
@@ -182,9 +182,9 @@ All code is written in TypeScript in the `src` folder and then transpiled to Jav
 
 TypeScript can be installed using [NPM](https://www.npmjs.com/), the Node Package Manager. NPM is installed by default with every Node.js installation.
 
-TypeScript is included as a dev dependency in each assignment's `package.json`. When you run `npm install` in a a folder with a `package.json` file it will install all packages listed in that file.
+TypeScript is included as a dev dependency in each assignment's `package.json`. When you run `npm install` in a folder with a `package.json` file it will install all packages listed in that file.
 
-To run the TypeScript Transpiler, you must have TypeScritp installed globally on your machine with :
+To run the TypeScript Transpiler, you must have TypeScript installed globally on your machine with :
 
 ```bash
 npm install -g typescript
@@ -251,6 +251,12 @@ Run `npm test` to run all tests in `./as1/src/tests`.
 ### Code Walkthrough
 
 ![Code Walkthrough](./img/CodeWalkthrough.PNG 'Code Walkthrough')
+
+To summarize the above diagrams, this lexer is taking in the input from `./input.txt` as one large string. Then it removes comments, newlines, and tabs. After it scans for any keychars ( `operators`, and `separators`) and inserts spaces before and after each.
+
+Now we split the string into an array of strings on every space. Finally, we loop through the array of strings and determine which token type they belong to.
+
+This method does not utilize any look ahead because every keychar is only of length 1.
 
 ### Finite State Machines for Regular Expressions
 
@@ -427,7 +433,7 @@ You can test this RegEx and view the FSM at [debuggex.com](https://www.debuggex.
 
 As for data structures, the lexer relies on the default JavaScript arrays. No complex data structures are used at the moment.
 
-We might achieve faster runtimes with linked lists, but it's rather difficult to implement them in JavaScript, given the lack of pointers and deference operators.
+We might achieve faster runtimes with linked lists, but it's rather difficult to implement them in JavaScript, given the lack of pointers and dereference operators.
 
 ### Algorithms
 
@@ -469,7 +475,7 @@ export const getCleanInput = (input: string): string[] => {
 | 4   | `else cleanInput.push(char)`                             | if not keychar then add it to the new array without padding                                                 |
 | 5   | `cleanInput.join('').split(' ').filter((e) => e !== '')` | make the array into a string, split it back into an array based off spaces and then remove any extra spaces |
 
-This function is necessary to properly identify `separators` and `operators`. Since we are walking through an array on inputs separated by spaces, it is necessary to pad these keychars with spaces. This avoids the following :
+This function is necessary to properly identify `separators` and `operators`. Since we are walking through an array of inputs separated by spaces, it is necessary to pad these keychars with spaces. This avoids the following :
 
 > `input` : fahr
 
