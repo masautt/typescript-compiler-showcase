@@ -4,7 +4,7 @@
 
 **NOTE**: This project requires Node.js 12.16 and above, which is not available on campus computers. You can run this project online at this [repl.it project](https://repl.it/@msautter/typescript-compiler).
 
-![Demo](./img/demo.GIF 'demo')
+![Demo](./img/demo.gif 'demo')
 
 ## 1. Problem Statement
 
