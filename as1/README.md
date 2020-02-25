@@ -597,3 +597,5 @@ We chose not to put limitations on the size of integers and length of identifier
 ## 5. Shortcomings
 
 We have several unit and integration tests in the `./src/tests` folder. If our lexer fails any requirements, it's probably not being tested for. If you find any missing requirements, we will be sure to test for them again in Assignment 2.
+
+We did plan a better implementation of the IDLE, but we ran into some inconsistencies with the CLI library we used. We're planning on improving this on the next project.
