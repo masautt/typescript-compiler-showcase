@@ -470,6 +470,28 @@ export const getTokens = (input: string[]): Token[] =>
 
 To avoid any slowdowns with I/O, there is a `5KB` file size limit on input.txt. If the `stats.size` value is larger than the set `FILE_SIZE_LIMIT` in `./src/utils/env`, the lexer will not run on the file.
 
+We also placed limitations on `identifiers` and `realnums`.
+
+If an `identifier` is longer than 20 characters then it will output a warning to the console.
+
+```typescript
+const isOverIdentifierLimit = (word: string) => word.length > IDENTIFIER_LIMIT;
+```
+
+If a `real` is greater than 10000 (after Math.abs()) then it will output a warning to the console.
+
+```typescript
+const isOverRealnumLimit = (word: string) => Math.abs(parseInt(word)) > REALNUM_LIMIT;
+```
+
+All limitations are defined in `./src/utils/env` ;
+
+```typescript
+export const IDENTIFIER_LIMIT = 20; //String Length
+export const REALNUM_LIMIT = 10000; //Number limit
+export const FILE_SIZE_LIMIT = 5000; //In bytes
+```
+
 ### Implementation
 
 `./src/index.ts`
