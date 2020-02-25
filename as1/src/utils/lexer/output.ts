@@ -5,7 +5,7 @@
 import { table, getBorderCharacters } from 'table';
 import chalk from 'chalk';
 import { Token } from '../../types/tokens';
-import { IDENTIFIER_LIMIT, REALNUM_LIMIT } from '../env';
+import { IDENTIFIER_LIMIT, REALNUM_LIMIT, FILE_SIZE_LIMIT, FILE_NAME } from '../env';
 
 export const printTokenTable = (tokens: Token[]) => {
     let output = [['#', 'Lexeme', 'Token']];
@@ -47,15 +47,15 @@ export const printTokenTable = (tokens: Token[]) => {
                       ])
                     : output.push([
                           chalk.bold((index + 1).toString()),
-                          chalk.yellow(token.value),
-                          chalk.bgYellow.black(token.type)
+                          chalk.white(token.value),
+                          chalk.bgWhite.black(token.type)
                       ]);
                 break;
             case 'separator':
                 output.push([
                     chalk.bold((index + 1).toString()),
-                    chalk.blue(token.value),
-                    chalk.bgBlue.black(token.type)
+                    chalk.yellow(token.value),
+                    chalk.bgYellow.black(token.type)
                 ]);
                 break;
             case 'unknown':
@@ -88,6 +88,10 @@ export const printTokenTable = (tokens: Token[]) => {
     );
 };
 
+export const printFileErrors = () => console.log(`${chalk.red("ERROR :")} ${chalk.yellow(FILE_NAME)} is too large. File limit size is ${chalk.yellow(FILE_SIZE_LIMIT /
+    1000 + " KB")}. You can change the ${chalk.yellow("FILE_SIZE_LIMIT")} in '${chalk.yellow("./utils/env")}'`)
+
+
 export const printTokenErrors = (tokens: Token[]): boolean => {
     let hasErrors = false;
 
@@ -95,31 +99,31 @@ export const printTokenErrors = (tokens: Token[]): boolean => {
         if (token.type === 'unknown') {
             hasErrors = true;
             console.log(
-                `${chalk.red('ERROR')} : getTokens( ) returned ${chalk.bgRed(
+                `${chalk.red('ERROR :')}  ${chalk.yellow("getTokens( )")} returned type ${chalk.bgRed(
                     'unknown'
-                )} for value ${chalk.red(token.value)} at position ${chalk.inverse(index + 1)}`
+                )} for value ${chalk.red(token.value)} at position ${chalk.yellow(index + 1)}`
             );
             console.log('');
         }
         if (token.type === 'identifier' && isOverIdentifierLimit(token.value)) {
             hasErrors = true;
             console.log(
-                `${chalk.red('ERROR')} : getTokens( ) returned ${chalk.bgRed(
+                `${chalk.red('ERROR :')}  ${chalk.yellow("getTokens( )")} returned type ${chalk.bgRed(
                     'identifier'
-                )} for value ${chalk.red(token.value)} at position ${chalk.inverse(
+                )} for value ${chalk.red(token.value)} at position ${chalk.yellow(
                     index + 1
-                )}, however it excedes the IDENTIFIER_LIMIT (${IDENTIFIER_LIMIT}) set in ./src/utils/env`
+                )}, however it excedes the ${chalk.yellow("IDENTIFIER_LIMIT")} (${IDENTIFIER_LIMIT}) set in ${chalk.yellow("'./src/utils/env'")}`
             );
             console.log('');
         }
         if (token.type === 'real' && isOverRealnumLimit(token.value)) {
             hasErrors = true;
             console.log(
-                `${chalk.red('ERROR')} : getTokens( ) returned ${chalk.bgRed(
+                `${chalk.red('ERROR :')}  ${chalk.yellow("getTokens( )")} returned type ${chalk.bgRed(
                     'real'
-                )} for value ${chalk.red(token.value)} at position ${chalk.inverse(
+                )} for value ${chalk.red(token.value)} at position ${chalk.yellow(
                     index + 1
-                )},  however it excedes the REALNUM_LIMIT (${REALNUM_LIMIT}) set in ./src/utils/env`
+                )},  however it excedes the ${chalk.yellow("REALNUM_LIMIT")} (${REALNUM_LIMIT}) set in ${chalk.yellow("'./src/utils/env'")}`
             );
             console.log('');
         }
