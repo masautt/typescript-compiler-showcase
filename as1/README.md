@@ -201,7 +201,9 @@ npm start
 
 ### Editing the Input to the Lexer
 
-The lexer analyzes `./as1/input.txt` by default. You can manipulate this file to your liking or change the input file name (`FILE_NAME`) in `./src/utils/env.ts`.
+The lexer analyzes `./as1/input.txt` by default. You can manipulate this file to your liking or change the input file name (`INPUT_FILE_NAME`) in `./src/utils/env.ts`.
+
+You can also change where the application is outputted with `OUTPUT_FILE_NAME`. This must be a `JSON file`.
 
 ### Testing
 
@@ -479,6 +481,23 @@ export const getTokens = (input: string[]): Token[] =>
 
 To avoid any slowdowns with I/O, there is a `5KB` file size limit on input.txt. If the `stats.size` value is larger than the set `FILE_SIZE_LIMIT` in `./src/utils/env`, the lexer will not run on the file.
 
+### Implementation
+
+`./src/utils/files.ts`
+
+```typescript
+export const tokenizeFile = (path: string = INPUT_FILE_NAME) =>
+    stat(path, (err: any, stats: Stats) =>
+        err
+            ? console.log(err)
+            : stats.size >= FILE_SIZE_LIMIT
+                ? printFileErrors()
+                : readFile(path, 'utf8', (err: any, input: string) =>
+                    err ? console.log(err) : saveTokens(OUTPUT_FILE_NAME, tokenize(input))
+                )
+    );
+```
+
 We also placed limitations on `identifiers` and `realnums`.
 
 If an `identifier` is longer than 20 characters then it will output a warning to the console.
@@ -499,23 +518,6 @@ All limitations are defined in `./src/utils/env` ;
 export const IDENTIFIER_LIMIT = 20; //String Length
 export const REALNUM_LIMIT = 10000; //Number limit
 export const FILE_SIZE_LIMIT = 5000; //In bytes
-```
-
-### Implementation
-
-`./src/index.ts`
-
-```typescript
-const startLexer = (path: string) =>
-    stat(path, (err: any, stats: Stats) =>
-        err
-            ? console.log(err)
-            : stats.size >= FILE_SIZE_LIMIT
-            ? console.log(FILE_SIZE_LIMIT_MSG)
-            : readFile(path, 'utf8', (err: any, input: string) =>
-                  err ? console.log(err) : tokenize(input)
-              )
-    );
 ```
 
 ### Other possible limitations
