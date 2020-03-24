@@ -1,10 +1,11 @@
 import { table, getBorderCharacters } from 'table';
+import { Token, TokenType } from "./types";
 import chalk from 'chalk';
 
 export const lexer = (input: string) => {
-    let cleanInput = getCleanInput(input)
-    let tokens: Token[] = getTokens(cleanInput);
-    printTokenTable(tokens);
+    const cleanInput = getCleanInput(input)
+    const tokens: Token[] = getTokens(cleanInput);
+    //printTokenTable(tokens);
     return tokens
 }
 
@@ -111,13 +112,6 @@ export const printTokenTable = (tokens: Token[]) => {
         })
     );
 };
-
-
-
-
-//Types
-interface Token { value: string; type: TokenType; }
-type TokenType = 'keyword' | 'separator' | 'identifier' | 'operator' | 'unknown' | 'real';
 
 //Tokens 
 const isValidIdentifier = (word: string) => RegExp('^[a-zA-Z][a-zA-Z0-9$]*$').test(word);
