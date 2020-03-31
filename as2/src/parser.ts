@@ -1,9 +1,10 @@
 import { Token, Rule } from "./types";
 import { rules } from "./rules";
+import chalk from "chalk";
 
 export const parser = (tokens : Token[]) => 
     tokens.forEach((token: Token, tokenIndex) => {
-        console.log(`Token : ${token.type} \t Lexeme : ${token.value}`)
+        console.log(chalk.bold(`Token : ${token.type} \t Lexeme : ${token.value}`))
 
         tokenIndex === 0 && console.log(isStatementList(tokens)
                 ? `\t${rules[0].type}\n\t${rules[1].type}`
@@ -13,11 +14,22 @@ export const parser = (tokens : Token[]) =>
 
         const restOfTokens = tokens.slice(tokenIndex, tokens.length);
 
-        rules.forEach((rule: Rule) => 
-            isRule(restOfTokens, rule) 
-                && console.log(`\t${rule.type}`));
-    })
+        let foundRule : boolean = false;
+        rules.forEach((rule: Rule) => {
+            if (isRule(restOfTokens, rule)) {
+                console.log(`\t${rule.type}`);
+                foundRule = true;
+            }
+        })
 
+        if (!foundRule) {
+            rules.splice(2,5).forEach((rule : Rule) => {
+                if (isRule([token], rule)) {
+                    console.log(`\t${rule.type}`)
+                }
+            })
+        } 
+    })
 
 
 const isRule = (tokens: Token[], rule: Rule): boolean => {
@@ -49,7 +61,6 @@ export const getNextRule = (ruleIndex : number) : Rule | undefined =>
         ? undefined
         : rules[ruleIndex + 1]
     
-
 export const getPrevRule = (ruleIndex : number) : Rule | undefined => 
     ruleIndex === 0
         ? undefined

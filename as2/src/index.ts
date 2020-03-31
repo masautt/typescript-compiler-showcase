@@ -14,16 +14,11 @@ inquirer.prompt([
             "(4) subtraction.txt - Arithmetic Subtraction Statement",
             "(5) multiplication.txt - Arithmetic Multiplication Statement",
             "(6) division.txt - Arithmetic Division Statement",
-            "(7) CUSTOM.txt - Enter your own"
         ]
     }
 ]).then(answers => {
     const input = readFileSync(`./input/${answers.main.split(" ")[1]}`, "utf8");
     const tokens = lexer(input);
     parser(tokens);
-    //console.log(isStatementList(tokens))
-
-
-   
 });
 

@@ -19,7 +19,6 @@ inquirer_1.default.prompt([
             "(4) subtraction.txt - Arithmetic Subtraction Statement",
             "(5) multiplication.txt - Arithmetic Multiplication Statement",
             "(6) division.txt - Arithmetic Division Statement",
-            "(7) CUSTOM.txt - Enter your own"
         ]
     }
 ]).then(function (answers) {

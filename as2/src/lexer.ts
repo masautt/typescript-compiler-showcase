@@ -5,7 +5,6 @@ import chalk from 'chalk';
 export const lexer = (input: string) => {
     const cleanInput = getCleanInput(input)
     const tokens: Token[] = getTokens(cleanInput);
-    //printTokenTable(tokens);
     return tokens
 }
 
