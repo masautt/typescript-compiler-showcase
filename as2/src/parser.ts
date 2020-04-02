@@ -2,15 +2,18 @@ import { Token, Rule } from "./types";
 import { rules } from "./rules";
 import chalk from "chalk";
 
-export const parser = (tokens : Token[]) => 
+export const parser = (tokens : Token[]) : void => 
     tokens.forEach((token: Token, tokenIndex) => {
         console.log(chalk.bold(`Token : ${token.type} \t Lexeme : ${token.value}`))
 
-        tokenIndex === 0 && console.log(isStatementList(tokens)
+        tokenIndex === 0 
+            && console.log(isStatementList(tokens)
                 ? `\t${rules[0].type}\n\t${rules[1].type}`
                 : `\t${rules[1].type}`);
 
-        getPrevToken(tokens, tokenIndex)?.value === ";" && console.log(`${rules[1].type}`);
+        getPrevToken(tokens, tokenIndex)
+            ?.value === ";" 
+            && console.log(`${rules[1].type}`);
 
         const restOfTokens = tokens.slice(tokenIndex, tokens.length);
 
@@ -32,7 +35,7 @@ export const parser = (tokens : Token[]) =>
     })
 
 
-const isRule = (tokens: Token[], rule: Rule): boolean => {
+const isRule = (tokens: Token[], rule: Rule) : boolean => {
     if (tokens.length !== rule.values.length) return false;
 
     let isMatch : boolean = true;

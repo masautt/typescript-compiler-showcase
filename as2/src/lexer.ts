@@ -2,7 +2,7 @@ import { table, getBorderCharacters } from 'table';
 import { Token, TokenType } from "./types";
 import chalk from 'chalk';
 
-export const lexer = (input: string) => {
+export const lexer = (input: string) : Token[] => {
     const cleanInput = getCleanInput(input)
     const tokens: Token[] = getTokens(cleanInput);
     return tokens
@@ -43,7 +43,7 @@ const getTokens = (input: string[]): Token[] =>
         );
 
 
-export const printTokenTable = (tokens: Token[]) => {
+export const printTokenTable = (tokens: Token[]) : void =>  {
     let output = [['#', 'Lexeme', 'Token']];
     tokens.forEach((token, index) => {
         switch (token.type) {
@@ -131,7 +131,6 @@ const isSeparatorRegex = (char: string) => RegExp(`('|\(|\)|{||}|\[|\]|,|.|\:|;|
 const keycharsArr = [...separators, ...operators];
 const isKeychar = (char: string) => keycharsArr.includes(char);
 const hasKeychar = (word: string) => keycharsArr.some((char) => word.includes(char));
-
 //Removers
 const removeComments = (input: string) => input.replace(/(!(.*?)!)/g, ' ');
 const removeNewLines = (input: string) => input.replace(/(\r\n|\n|\r|\t)/gm, ' ');
