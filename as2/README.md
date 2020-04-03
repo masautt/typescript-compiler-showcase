@@ -169,7 +169,7 @@ output :
 
 ## 2. Getting Started
 
-**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/@msautter/typescript-compiler).
+**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/@msautter/typescript-compiler-as2).
 
 ### Requirements
 
