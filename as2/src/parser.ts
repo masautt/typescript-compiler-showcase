@@ -10,10 +10,13 @@ export const parser = (tokens : Token[]) : void =>
             && console.log(isStatementList(tokens)
                 ? `\t${rules[0].type}\n\t${rules[1].type}`
                 : `\t${rules[1].type}`);
-
-        getPrevToken(tokens, tokenIndex)
-            ?.value === ";" 
-            && console.log(`${rules[1].type}`);
+                
+        const prevToken = getPrevToken(tokens, tokenIndex);
+        if (prevToken) {
+            if (prevToken.value === ";") {
+                console.log(`${rules[1].type}`);
+            }
+        }
 
         const restOfTokens = tokens.slice(tokenIndex, tokens.length);
 
