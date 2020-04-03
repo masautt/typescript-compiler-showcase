@@ -235,12 +235,6 @@ npm start
 
 3. `npm start` will run the TypeScript compiler with `tsc` which will transpile all the TypeScript files in `/src/` to JavaScript files in `/lib/`. Then, it will start the node application by running `node ./lib/index.js`
 
-### Editing the Input to the Lexer
-
-The lexer analyzes `./as2/input.txt` by default. You can manipulate this file to your liking or change the input file name (`INPUT_FILE_NAME`) in `./src/utils/env.ts`.
-
-You can also change where the application is outputted with `OUTPUT_FILE_NAME`. This must be a `JSON file`.
-
 ## 3. Parser Design
 
 ![Code Walkthrough](./img/CodeWalkthrough.PNG 'Code Walkthrough')
