@@ -377,3 +377,8 @@ As we mentioned at the top of the documentation, we have limited our input to on
 
 We have removed the ability to add your own input through a file or the terminal. The parser can handle more than one statement at a time, but due to COVID-19, not all possibilities have been accounted for.
 
+
+#### Shortcomings
+
+As we mentioned previously, the major shortcoming with this parser is the limitation to only 5 examples. We thank professor Anthony Le for allowing us to get credit for this limited implementation.
+

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var inquirer_1 = __importDefault(require("inquirer"));
 var lexer_1 = require("./lexer");
+var parser_1 = require("./parser");
 var fs_1 = require("fs");
 inquirer_1.default.prompt([
     {
@@ -22,7 +23,10 @@ inquirer_1.default.prompt([
     }
 ]).then(function (answers) {
     var input = fs_1.readFileSync("./input/" + answers.main.split(" ")[1], "utf8");
+    console.log("Input : " + input + "\n");
     var tokens = lexer_1.lexer(input);
+    console.log("Tokens :");
     console.log(tokens);
-    //parser(tokens);
+    console.log("\n");
+    parser_1.parser(tokens);
 });

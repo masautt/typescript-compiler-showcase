@@ -19,8 +19,14 @@ inquirer.prompt([
     }
 ]).then(answers => {
     const input = readFileSync(`./input/${answers.main.split(" ")[1]}`, "utf8");
+    console.log(`Input : ${input}\n`);
+
     const tokens = lexer(input);
+
+    console.log(`Tokens :`);
     console.log(tokens);
-    //parser(tokens);
+    console.log("\n");
+
+    parser(tokens);
 });
 
