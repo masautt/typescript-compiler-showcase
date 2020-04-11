@@ -26,7 +26,7 @@ export const rules: Rule[] = [
         values : [{value : "/"}]
     },
     {
-        type: "<Assignment> -> <Identifier> = <Expression> ;\n\t<Expression> -> <Identifier>",
+        type: "<Assignment> -> <Identifier> = <Expression> ;\n\t<Expression> -> <Identifier> ;",
         values: [
             { type: "identifier" },
             { value: "=" },
@@ -35,7 +35,15 @@ export const rules: Rule[] = [
         ]
     },
     {
-        type: "<Assignment> -> <Identifier> = <Expression> ;\n\t<Expression> -> <Value>",
+        type: "<Assignment> -> <Identifier> = <Expression>\n\t<Expression> -> <Identifier>",
+        values: [
+            { type: "identifier" },
+            { value: "=" },
+            { type: "identifier" },
+        ]
+    },
+    {
+        type: "<Assignment> -> <Identifier> = <Expression>\n\t<Expression> -> <Value> ;",
         values: [
             { type: "identifier" },
             { value: "=" },
@@ -44,7 +52,15 @@ export const rules: Rule[] = [
         ]
     },
     {
-        type: "<Assignment> -> <Identifier> = <Expression> ;\n\t<Expression> -> <Value>",
+        type: "<Assignment> -> <Identifier> = <Expression> \n\t<Expression> -> <Value>",
+        values: [
+            { type: "identifier" },
+            { value: "=" },
+            { type: "real" },
+        ]
+    },
+    {
+        type: "<Assignment> -> <Identifier> = <Expression>\n\t<Expression> -> <Value> ;",
         values: [
             { type: "identifier" },
             { value: "=" },
@@ -53,13 +69,30 @@ export const rules: Rule[] = [
         ]
     },
     {
-        type: "<Assignment> -> <Identifier> = <Expression> ;\n\t<Expression> -> <Value>",
+        type: "<Assignment> -> <Identifier> = <Expression>\n\t<Expression> -> <Value>",
+        values: [
+            { type: "identifier" },
+            { value: "=" },
+            { value: "true" },
+        ]
+    },
+    {
+        type: "<Assignment> -> <Identifier> = <Expression>\n\t<Expression> -> <Value> ;",
         values:
             [
                 { type: "identifier" },
                 { value: "=" },
                 { value: "false" },
                 { value: ";" }
+            ],
+    },
+    {
+        type: "<Assignment> -> <Identifier> = <Expression> \n\t<Expression> -> <Value>",
+        values:
+            [
+                { type: "identifier" },
+                { value: "=" },
+                { value: "false" },
             ],
     },
     {
@@ -72,12 +105,26 @@ export const rules: Rule[] = [
         ],
     },
     {
+        type: "<Declaration> -> <Type> <Identifier>",
+        values: [
+
+            { value: "int" },
+            { type: "identifier" },
+        ],
+    },
+    {
         type: "<Declaration> -> <Type> <Identifier> ;",
         values: [
             { value: "float" },
             { type: "identifier" },
             { value: ";" }
-
+        ],
+    },
+    {
+        type: "<Declaration> -> <Type> <Identifier>",
+        values: [
+            { value: "float" },
+            { type: "identifier" },
         ],
     },
     {
@@ -89,9 +136,29 @@ export const rules: Rule[] = [
         ]
     },
     {
+        type: "<Declaration> -> <Type> <Identifier>",
+        values: [
+            { value: "bool" },
+            { type: "identifier" },
+        ]
+    },
+    {
+        type: "<Term> -> <Factor> <Term Prime>\n\t<Factor> -> <Identifier> ;",
+        values : [
+            { type : "identifier" },
+            { value : ";"}
+        ]
+    },
+    {
         type: "<Term> -> <Factor> <Term Prime>\n\t<Factor> -> <Identifier>",
         values : [
             { type : "identifier" },
+        ]
+    },
+    {
+        type: "<Term> -> <Factor> <Term Prime>\n\t<Factor> -> <Real> ;",
+        values : [
+            { type : "real" },
             { value : ";"}
         ]
     },
@@ -99,7 +166,6 @@ export const rules: Rule[] = [
         type: "<Term> -> <Factor> <Term Prime>\n\t<Factor> -> <Real>",
         values : [
             { type : "real" },
-            { value : ";"}
         ]
     },
     {
@@ -109,9 +175,26 @@ export const rules: Rule[] = [
         ]
     },
     {
+        type : "<Addition> -> <Expression>\n\t<Expression> -> <Identifier> + <Identifier> ;",
+        values : [
+            { type : "identifier" },
+            { value : "+" },
+            { type : "identifier" },
+            { value: ";" }
+        ]
+    },
+    {
         type : "<Addition> -> <Expression>\n\t<Expression> -> <Identifier> + <Identifier>",
         values : [
             { type : "identifier" },
+            { value : "+" },
+            { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Addition> -> <Expression>\n\t<Expression> -> <Real> + <Identifier> ;",
+        values : [
+            { type : "real" },
             { value : "+" },
             { type : "identifier" },
             { value: ";" }
@@ -123,6 +206,14 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "+" },
             { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Addition> -> <Expression>\n\t<Expression> -> <Identifier> + <Real> ;",
+        values : [
+            { type : "identifier" },
+            { value : "+" },
+            { type : "real" },
             { value: ";" }
         ]
     },
@@ -130,6 +221,14 @@ export const rules: Rule[] = [
         type : "<Addition> -> <Expression>\n\t<Expression> -> <Identifier> + <Real>",
         values : [
             { type : "identifier" },
+            { value : "+" },
+            { type : "real" },
+        ]
+    },
+    {
+        type : "<Addition> -> <Expression>\n\t<Expression> -> <Real> + <Real> ;",
+        values : [
+            { type : "real" },
             { value : "+" },
             { type : "real" },
             { value: ";" }
@@ -141,13 +240,29 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "+" },
             { type : "real" },
+        ]
+    },
+    {
+        type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Identifier> - <Identifier> ;",
+        values : [
+            { type : "identifier" },
+            { value : "-" },
+            { type : "identifier" },
             { value: ";" }
         ]
     },
     {
-        type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Identifier> - <Identifier>",
+        type : "<Subtraction> -> <Expression> \n\t<Expression> -> <Identifier> - <Identifier> ",
         values : [
             { type : "identifier" },
+            { value : "-" },
+            { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Real> - <Identifier> ;",
+        values : [
+            { type : "real" },
             { value : "-" },
             { type : "identifier" },
             { value: ";" }
@@ -159,6 +274,14 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "-" },
             { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Identifier> - <Real> ;",
+        values : [
+            { type : "identifier" },
+            { value : "-" },
+            { type : "real" },
             { value: ";" }
         ]
     },
@@ -166,6 +289,14 @@ export const rules: Rule[] = [
         type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Identifier> - <Real>",
         values : [
             { type : "identifier" },
+            { value : "-" },
+            { type : "real" },
+        ]
+    },
+    {
+        type : "<Subtraction> -> <Expression>\n\t<Expression> -> <Real> - <Real> ;",
+        values : [
+            { type : "real" },
             { value : "-" },
             { type : "real" },
             { value: ";" }
@@ -177,13 +308,29 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "-" },
             { type : "real" },
+        ]
+    },
+    {
+        type : "<Division> -> <Expression>\n\t<Expression> -> <Identifier> / <Identifier> ;",
+        values : [
+            { type : "identifier" },
+            { value : "/" },
+            { type : "identifier" },
             { value: ";" }
         ]
     },
     {
-        type : "<Division> -> <Expression>\n\t<Expression> -> <Identifier> / <Identifier>",
+        type : "<Division> -> <Expression> \n\t<Expression> -> <Identifier> / <Identifier> ",
         values : [
             { type : "identifier" },
+            { value : "/" },
+            { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Division> -> <Expression>\n\t<Expression> -> <Real> / <Identifier> ;",
+        values : [
+            { type : "real" },
             { value : "/" },
             { type : "identifier" },
             { value: ";" }
@@ -195,6 +342,14 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "/" },
             { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Division> -> <Expression> ;\n\t<Expression> -> <Identifier> / <Real> ;",
+        values : [
+            { type : "identifier" },
+            { value : "/" },
+            { type : "real" },
             { value: ";" }
         ]
     },
@@ -202,6 +357,14 @@ export const rules: Rule[] = [
         type : "<Division> -> <Expression>\n\t<Expression> -> <Identifier> / <Real>",
         values : [
             { type : "identifier" },
+            { value : "/" },
+            { type : "real" },
+        ]
+    },
+    {
+        type : "<Division> -> <Expression> ;\n\t<Expression> -> <Real> / <Real> ;",
+        values : [
+            { type : "real" },
             { value : "/" },
             { type : "real" },
             { value: ";" }
@@ -213,6 +376,14 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "/" },
             { type : "real" },
+        ]
+    },
+    {
+        type : "<Multiplication> -> <Expression> ;\n\t<Expression> -> <Identifier> * <Identifier> ;",
+        values : [
+            { type : "identifier" },
+            { value : "*" },
+            { type : "identifier" },
             { value: ";" }
         ]
     },
@@ -220,6 +391,14 @@ export const rules: Rule[] = [
         type : "<Multiplication> -> <Expression>\n\t<Expression> -> <Identifier> * <Identifier>",
         values : [
             { type : "identifier" },
+            { value : "*" },
+            { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Multiplication> -> <Expression> ;\n\t<Expression> -> <Real> * <Identifier> ;",
+        values : [
+            { type : "real" },
             { value : "*" },
             { type : "identifier" },
             { value: ";" }
@@ -231,6 +410,14 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "*" },
             { type : "identifier" },
+        ]
+    },
+    {
+        type : "<Multiplication> -> <Expression> ;\n\t<Expression> -> <Identifier> * <Real> ;",
+        values : [
+            { type : "identifier" },
+            { value : "*" },
+            { type : "real" },
             { value: ";" }
         ]
     },
@@ -238,6 +425,14 @@ export const rules: Rule[] = [
         type : "<Multiplication> -> <Expression>\n\t<Expression> -> <Identifier> * <Real>",
         values : [
             { type : "identifier" },
+            { value : "*" },
+            { type : "real" },
+        ]
+    },
+    {
+        type : "<Multiplication> -> <Expression> ;\n\t<Expression> -> <Real> * <Real> ;",
+        values : [
+            { type : "real" },
             { value : "*" },
             { type : "real" },
             { value: ";" }
@@ -249,7 +444,6 @@ export const rules: Rule[] = [
             { type : "real" },
             { value : "*" },
             { type : "real" },
-            { value: ";" }
         ]
     }
 ]  

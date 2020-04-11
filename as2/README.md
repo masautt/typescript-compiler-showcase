@@ -4,6 +4,8 @@
 
 Due to the circumstances of COVID-19, this parser will only be satisfying the basic requirements outlined in [this clip](https://youtu.be/MGYPeguaZ7A) from the recent lecture. As much as we would have wanted to implement the full parser, this pandemic has limited our ability to physically meet and collaborate on this project.
 
+We also finished the parser before the documentation was updated the week of 04/06. We have not had time to update the project to the new requirements and we are turning it the exact assignment we turned in to the working iteration that was due on 04/06.
+
 ### Minimal Requirements Statement from Lecture 03-17-20
 
 "*As a matter of fact, if you can implement rules for a single declarative statement, and a rule for an assignment statement, and rules (plural), for the arithmetic expressions for addition, substraction, division, multiplication. You will satisfy the minimal points for project 2. Meaning you will get 80% for the grade, plus 10% for the documentation in implementing those rules that I just mentioned.*"
@@ -14,10 +16,10 @@ Due to the circumstances of COVID-19, this parser will only be satisfying the ba
 |-|-|-|
 |Simple Declarative|int a ;|declarative.txt|
 |Simple Assignment|int a = 1 ;|assignment.txt|
-|Arithmetic Addition|1 + 1|addition.txt|
-|Arithmetic Subtraction|1 - 1|subtraction.txt|
-|Arithmetic Division|1 / 1|division.txt|
-|Arithmetic Multiplication|1 * 1|multiplication.txt|
+|Arithmetic Addition|a + b|addition.txt|
+|Arithmetic Subtraction|a - b|subtraction.txt|
+|Arithmetic Division|a / b|division.txt|
+|Arithmetic Multiplication|a * b|multiplication.txt|
 
 
 
@@ -48,7 +50,7 @@ The possible token classes are `identifiers`, `keywords`, `operators`, `separato
  ```c++
  // addition.txt
 
-  1 + 1 ;
+  a + b ;
  ```
 
 
@@ -58,9 +60,9 @@ output :
  // lexer() :
 
  [ 
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'a' },
     { type: 'operator', value: '+' },
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'b' },
     { type: 'separator', value: ';' } 
 ]
   ```
@@ -111,16 +113,16 @@ output :
   input : 
  ```c++
  // division.txt
- 1 / 1;
+ a / b;
  ```
 
  output : 
  ```js
  // lexer() :
  [ 
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'a' },
     { type: 'operator', value: '/' },
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'b' },
     { type: 'separator', value: ';' } 
 ]
  
@@ -131,16 +133,16 @@ output :
    input : 
  ```c++
  // multiplication.txt
- 1 * 1;
+ a * b;
  ```
 
  output : 
  ```js
  // lexer() :
  [ 
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'a' },
     { type: 'operator', value: '*' },
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'b' },
     { type: 'separator', value: ';' } 
 ]
  
@@ -151,16 +153,16 @@ output :
     input : 
  ```c++
  // subtraction.txt
- 1 - 1;
+ a - b;
  ```
 
  output : 
  ```js
  // lexer() :
  [ 
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'a' },
     { type: 'operator', value: '-' },
-    { type: 'real', value: '1' },
+    { type: 'identifier', value: 'b' },
     { type: 'separator', value: ';' } 
 ]
  ```
@@ -238,6 +240,7 @@ npm start
 ## 3. Parser Design
 
 ![Code Walkthrough](./img/CodeWalkthrough.PNG 'Code Walkthrough')
+
 
 ### Data Structures
 
