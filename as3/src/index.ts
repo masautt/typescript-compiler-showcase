@@ -15,7 +15,7 @@ inquirer.prompt([
     }
 ]).then(answers => {
     const input = readFileSync(`./input/${answers.main.split(" ")[1]}`, "utf8");
-    console.log(`Input : ${input}\n`);
+    // console.log(`Input : ${input}\n`);
 
     const tokens = lexer(input);
 

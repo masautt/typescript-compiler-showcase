@@ -11,19 +11,8 @@ let STARTING_IDENTIFIER_ADDR : number = 2000;
 
 export const gencode = (tokens : Token[]) => {
 
-    // First we want to walk through the tokens and keep a list of all identifiers and their memory addresses
-    const identifiers : Identifier[] = []
-    tokens.forEach((token : Token, i : number) => {
-        if (token.type == "identifier") {
-            if (IdentifierTypes.includes(tokens[i-1].value)) {
-                identifiers.push({
-                    value : token.value,
-                    type : tokens[i-1].value,
-                    address : STARTING_IDENTIFIER_ADDR++
-                })
-            }
-        }
-    })
+    const identifiers : Identifier[] = getIdentifiers(tokens);
+
 
     // Now we need to walk through the tokens again, this time looking for values being initialized 
     let opNum = 1;
@@ -42,4 +31,20 @@ export const gencode = (tokens : Token[]) => {
 }
 
 
+
+const getIdentifiers = (tokens : Token[]) : Identifier[] => {
+    const identifiers : Identifier[] = []
+    tokens.forEach((token : Token, i : number) => {
+        if (token.type == "identifier") {
+            if (IdentifierTypes.includes(tokens[i-1].value)) {
+                identifiers.push({
+                    value : token.value,
+                    type : tokens[i-1].value,
+                    address : STARTING_IDENTIFIER_ADDR++
+                })
+            }
+        }
+    })
+    return identifiers;
+}
 
