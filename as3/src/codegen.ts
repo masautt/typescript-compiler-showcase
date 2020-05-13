@@ -7,21 +7,52 @@ interface Identifier { value: string; type: string; address : number }
 type IdentifierType = 'int' | 'bool' | 'float';
 const IdentifierTypes = ['int' , 'bool' , 'float'];
 
+import { Stack } from "./stack";
+
 let STARTING_IDENTIFIER_ADDR : number = 2000;
 
 export const gencode = (tokens : Token[]) => {
 
     const identifiers : Identifier[] = getIdentifiers(tokens);
 
+    const identifierStack = new Stack(identifiers);
+    const tokensStack = new Stack(tokens);
 
-    // Now we need to walk through the tokens again, this time looking for values being initialized 
     let opNum = 1;
     tokens.forEach((token : Token, i : number) => {
-        if (token.value == "=") {
-            if (tokens[i+1].type == "real") {
+        if (token.value === "=") {
+            if (tokens[i+1].type === "real") {
                 console.log(`${opNum++}\tPUSHI\t${tokens[i+1].value}`)
+                if (tokens[i-1].type === "identifier") {
+                    console.log(`${opNum++}\tPOPM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i-1].value)?.address}`)
+                }
             }
+            if (tokens[i+1].type === "identifier") {
+                console.log(`${opNum++}\tPUSHM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i+1].value)?.address}`)
 
+                if (tokens[i+2].type === "operator") {
+                    if (tokens[i+3].type === "identifier") {
+                        console.log(`${opNum++}\tPUSHM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i+3].value)?.address}`)
+                    }
+                    switch(tokens[i+2].value) {
+                        case "+" :
+                            console.log(`${opNum++}\tADD`);
+                            break;
+                        case "-":
+                            console.log(`${opNum++}\tSUB`);
+                            break;
+                        case "*" :
+                            console.log(`${opNum++}\tMUL`);
+                            break;
+                        case "/" :
+                            console.log(`${opNum++}\tDIV`);
+                            break;
+                    }
+                }
+                if (tokens[i-1].type === "identifier") {
+                    console.log(`${opNum++}\tPOPM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i-1].value)?.address}`)
+                }
+            }
         }
     })
 

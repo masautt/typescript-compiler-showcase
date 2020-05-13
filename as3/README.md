@@ -13,11 +13,14 @@ The goal for this TypeScript Code Generator is to print the following output bas
 #### simpleAssignment.txt
 ```
 ! Find the sum between two numbers!
-int num, nu2m, sum;
+int num;
+int num2;
+int sum;
+
 num = 0;
-nu2m = 15;
+num2 = 15;
 sum = 0;
-sum = num + nu2m;
+sum = num + num2;
 ```
 
 #### output (Terminal)
@@ -127,9 +130,6 @@ npm start
 3. `npm start` will run the TypeScript compiler with `tsc` which will transpile all the TypeScript files in `/src/` to JavaScript files in `/lib/`. Then, it will start the node application by running `node ./lib/index.js`
 
 ## 3. Code Generator Design
-
-
-
 
 ### Data Structures
 
@@ -245,9 +245,10 @@ sum             2002                    int
 | --- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | 1   | `    const identifiers : Identifier[] = []`                      | Generate a new array of identifiers to be returned at the end of the function execution                                                                            |
 | 2   | `tokens.forEach((token : Token, i : number) => {`              | Loop through each token that in the Tokens array that's passed in. Also use `i` as an index.                                                                                     |
-| 3   | `if (token.type == "identifier") {`   | Loop through each token in the passed in Token array
-| 4   | `isMatch = rule.values[i].value ? token.value !== rule.values[i].value ? false : isMatch : rule.values[i].type ? token.type !== rule.values[i].type ? false : isMatch : isMatch`| If the values aren't the same, set isMatch to false if the types aren't the same either                       |
-| 5   | `return isMatch;` | Return the boolean value determined in step 4|
+| 3   | `if (token.type == "identifier") {`   | If the token is an identifier...
+| 4   | ` if (IdentifierTypes.includes(tokens[i-1].value)) {`| If the identifier is initialized with `int`, `bool`, or `float`...
+| 5   | `identifiers.push({value : token.value, type : tokens[i-1].value, address : STARTING_IDENTIFIER_ADDR++})` | Add a new identifier to the identifier array with the value and type from the token info. Use the global variable `STARTING_IDENTIFIER_ADDR` as an incremental memory address|
+|6|`    return identifiers;`| Return the new array of identifiers|
 
 `isRule` is called once for every rule in a `forEach` rule.
 
@@ -293,51 +294,37 @@ tokenIndex === 0
 
 
 
-#### Helper Functions
-
-```typescript
-export const getNextRule = (ruleIndex : number) : Rule | undefined => 
-    ruleIndex === rules.length 
-        ? undefined
-        : rules[ruleIndex + 1]
-    
-export const getPrevRule = (ruleIndex : number) : Rule | undefined => 
-    ruleIndex === 0
-        ? undefined
-        : rules[ruleIndex - 1]
-
-export const getNextToken =  (tokens : Token[], tokenIndex : number) : Token | undefined => 
-    tokenIndex === tokens.length 
-        ? undefined
-        : tokens[tokenIndex + 1]
-
-export const getPrevToken = (tokens : Token[], tokenIndex : number) : Token | undefined => 
-    tokenIndex === 0
-        ? undefined
-        : tokens[tokenIndex - 1]
-```
-
-For example, `getPrevToken( )` is used to determine if the previous token's value was a semi-colon. If so then we print the rule statement.
-
-```typescript
-getPrevToken(tokens, tokenIndex)
-    ?.value === ";" 
-    && console.log(`${rules[1].type}`);
-```
-
-
 #### Limitations
 
-##### Limited Examples
-As we mentioned at the top of the documentation, we have limited our input to only 6 options : 
-* `addition.txt`
-* `assignment.txt`
-* `declaration.txt`
-* `division.txt`
-* `multiplication.txt`
-* `subtraction.txt`
+Besides limiting our application to only analyze `sampleAssignment.txt` we also had to simplify the file for our lexer to work properly on it. 
 
-We have removed the ability to add your own input through a file or the terminal. The parser can handle more than one statement at a time, but due to COVID-19, not all possibilities have been accounted for.
+We made the mistake of not considering multiple variables being initialized on the same line and we didn't have the time to implement this.
+
+Thus we changed `sampleAssignment.txt` from this :
+
+```
+! Find the sum between two numbers!
+int num, nu2m, sum;
+num = 0;
+nu2m = 15;
+sum = 0;
+sum = num + nu2m;
+
+```
+
+to this :
+
+```
+! Find the sum between two numbers!
+int num;
+int num2;
+int sum;
+
+num = 0;
+num2 = 15;
+sum = 0;
+sum = num + num2;
+```
 
 
 #### Shortcomings
