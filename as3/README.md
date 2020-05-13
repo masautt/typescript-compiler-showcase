@@ -61,7 +61,7 @@ The possible token classes are `identifiers`, `keywords`, `operators`, `separato
 
 ## 2. Getting Started
 
-**NOTE**: You can skip the installation process by running the lexer in a browser at [this repl.it link](https://repl.it/@msautter/typescript-compiler-as3).
+**NOTE**: You can skip the installation process by running the codegen in a browser at [this repl.it link](https://repl.it/@msautter/typescript-compiler-as3).
 
 ### Requirements
 
@@ -100,7 +100,7 @@ git clone https://github.com/masautt/typescript-compiler
 cd typescript-compiler
 ```
 
-### Running the Lexer
+### Running the Code Generator
 
 ```bash
 cd as3
@@ -260,39 +260,17 @@ rules.forEach((rule: Rule) => {
     }
 })
 ```
-
-#### isStatementList ( )
-
-##### Purpose
-
-This function checks in the array of tokens contains more than one statement.
+##### Helper Functions
 
 ```typescript
-const isStatementList = (tokens : Token[]) : boolean => 
-    tokens.map((token : Token) => token.value)
-        .filter((value : string) => value === ";")
-            .length > 1
+//Responsible for printing the assembly instruction
+    const printASM = (opNum : number, instruction : string, address? : number | string) => 
+        console.log(`${opNum}\t${instruction}\t${address?address:""}`);
+    
+//Grabs the identifier address from the identifier array
+    const getIdAddr = (i : number) => 
+        identifiers.find((identifier : Identifier) => identifier.value === tokens[i].value)?.address
 ```
-
-##### Steps
-
-| #   | Code                                                     | Explanation                                                                                                 |
-| --- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1   | `const isStatementList = (tokens : Token[]) : boolean`                      |Create a function that takes an array of Tokens and returns a boolean value                                                                            |
-| 2   | `tokens.map((token : Token) => token.value)`              |Reduce the array to tokens to just its values                                                                                     |
-| 3   | `.filter((value : string) => value === ";")`   | Filter to array to tokens whose values are a semi-colon
-| 4   | `.length > 1`| If the number of semi-colons are greater than 1 return true
-
-`isStatementList( )` is called only on the first token in order to determine which rule should be printed.
-
-```typescript
-tokenIndex === 0 
-    && console.log(isStatementList(tokens)
-        ? `\t${rules[0].type}\n\t${rules[1].type}`
-        : `\t${rules[1].type}`);
-```
-
-
 
 #### Limitations
 
@@ -329,5 +307,4 @@ sum = num + num2;
 
 #### Shortcomings
 
-As we mentioned previously, the major shortcoming with this parser is the limitation to only 5 examples. We thank professor Anthony Le for allowing us to get credit for this limited implementation.
-
+As we mentioned previously, the major shortcoming with this code generator is the fact we only could get it to work with `sampleAssignment.txt`.

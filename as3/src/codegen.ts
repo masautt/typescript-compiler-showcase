@@ -1,20 +1,38 @@
-interface Token { value: string; type: TokenType; }
 
-type TokenType = 'keyword' | 'separator' | 'identifier' | 'operator' | 'unknown' | 'real';
-const TokenTypes = ['keyword' , 'separator' , 'identifier' , 'operator' , 'unknown' , 'real'];
 
-interface Identifier { value: string; type: string; address : number }
-type IdentifierType = 'int' | 'bool' | 'float';
-const IdentifierTypes = ['int' , 'bool' , 'float'];
+
 
 import { Stack } from "./stack";
+import { Token, TokenType, Identifier, IdentifierTypes } from "./types";
 
-let STARTING_IDENTIFIER_ADDR : number = 2000;
+
 
 export const gencode = (tokens : Token[]) => {
 
-    const identifiers : Identifier[] = getIdentifiers(tokens);
+    const getIdentifiers = (tokens : Token[]) : Identifier[] => {
+        const identifiers : Identifier[] = []
+        tokens.forEach((token : Token, i : number) => {
+            if (token.type == "identifier") {
+                if (IdentifierTypes.includes(tokens[i-1].value)) {
+                    identifiers.push({
+                        value : token.value,
+                        type : tokens[i-1].value,
+                        address : STARTING_IDENTIFIER_ADDR++
+                    })
+                }
+            }
+        })
+        return identifiers;
+    }
 
+    const printASM = (opNum : number, instruction : string, address? : number | string) => console.log(`${opNum}\t${instruction}\t${address?address:""}`);
+    
+    
+    const getIdAddr = (i : number) => identifiers.find((identifier : Identifier) => identifier.value === tokens[i].value)?.address
+
+    let STARTING_IDENTIFIER_ADDR : number = 2000;
+
+    const identifiers : Identifier[] = getIdentifiers(tokens);
     const identifierStack = new Stack(identifiers);
     const tokensStack = new Stack(tokens);
 
@@ -22,60 +40,46 @@ export const gencode = (tokens : Token[]) => {
     tokens.forEach((token : Token, i : number) => {
         if (token.value === "=") {
             if (tokens[i+1].type === "real") {
-                console.log(`${opNum++}\tPUSHI\t${tokens[i+1].value}`)
+                printASM(opNum++, "PUSHI", tokens[i+1].value);
                 if (tokens[i-1].type === "identifier") {
-                    console.log(`${opNum++}\tPOPM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i-1].value)?.address}`)
+                    printASM(opNum++, "POPM", getIdAddr(i-1));
                 }
             }
             if (tokens[i+1].type === "identifier") {
-                console.log(`${opNum++}\tPUSHM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i+1].value)?.address}`)
+                printASM(opNum++, "PUSHM", getIdAddr(i+1));
 
                 if (tokens[i+2].type === "operator") {
                     if (tokens[i+3].type === "identifier") {
-                        console.log(`${opNum++}\tPUSHM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i+3].value)?.address}`)
+                        printASM(opNum++, "PUSHM", getIdAddr(i+3));
                     }
                     switch(tokens[i+2].value) {
                         case "+" :
-                            console.log(`${opNum++}\tADD`);
+                            printASM(opNum++,"ADD")
                             break;
                         case "-":
-                            console.log(`${opNum++}\tSUB`);
+                            printASM(opNum++,"SUB")
                             break;
                         case "*" :
-                            console.log(`${opNum++}\tMUL`);
+                            printASM(opNum++,"MUL")
                             break;
                         case "/" :
-                            console.log(`${opNum++}\tDIV`);
+                            printASM(opNum++,"DIV")
                             break;
                     }
                 }
                 if (tokens[i-1].type === "identifier") {
-                    console.log(`${opNum++}\tPOPM\t${identifiers.find((identifier : Identifier) => identifier.value === tokens[i-1].value)?.address}`)
+                    printASM(opNum++,"POPM", getIdAddr(i-1));
                 }
             }
         }
     })
 
-    console.log("Symbol Table")
+    console.log("\nSymbol Table")
     console.log("Identifier\tMemoryLocation\t\tType");
     identifiers.forEach((i : Identifier) => console.log(`${i.value}\t\t${i.address}\t\t\t${i.type}`))
 }
 
 
 
-const getIdentifiers = (tokens : Token[]) : Identifier[] => {
-    const identifiers : Identifier[] = []
-    tokens.forEach((token : Token, i : number) => {
-        if (token.type == "identifier") {
-            if (IdentifierTypes.includes(tokens[i-1].value)) {
-                identifiers.push({
-                    value : token.value,
-                    type : tokens[i-1].value,
-                    address : STARTING_IDENTIFIER_ADDR++
-                })
-            }
-        }
-    })
-    return identifiers;
-}
+
 
