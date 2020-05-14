@@ -28,7 +28,10 @@ export const gencode = (tokens : Token[]) => {
     const printASM = (opNum : number, instruction : string, address? : number | string) => console.log(`${opNum}\t${instruction}\t${address?address:""}`);
     
     
-    const getIdAddr = (i : number) => identifiers.find((identifier : Identifier) => identifier.value === tokens[i].value)?.address
+    const getIdAddr = (i : number) => {
+        const possibleIdentifier =  identifiers.find((identifier : Identifier) => identifier.value === tokens[i].value);
+        return possibleIdentifier ? possibleIdentifier.address : 0;
+    };
 
     let STARTING_IDENTIFIER_ADDR : number = 2000;
 
